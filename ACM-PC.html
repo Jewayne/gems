@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACM-PC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2c3e50',
+                        secondary: '#34495e',
+                        accent: '#3498db',
+                        light: '#ecf0f1',
+                        dark: '#2d3436'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Georgia', 'Cambria', 'serif'],
+                        mono: ['Consolas', 'Monaco', 'monospace']
+                    },
+                    fontSize: {
+                        'xs': '0.75rem',
+                        'sm': '0.8125rem',
+                        'base': '0.875rem',
+                        'lg': '0.9375rem',
+                        'xl': '1rem',
+                        '2xl': '1.125rem',
+                        '3xl': '1.25rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .code-container {
+                max-width: 100%;
+                overflow-x: auto;
+                background-color: #1a1b26;
+                color: #e2e8f0;
+                border-radius: 8px;
+                position: relative; /* 为复制按钮定位 */
+            }
+            /* 修复Firefox滚动条样式兼容 */
+            .code-container {
+                scrollbar-width: thin;
+                scrollbar-color: #3498db #2c3e50;
+            }
+            .code-container::-webkit-scrollbar {
+                width: 4px;
+                height: 6px;
+            }
+            .code-container::-webkit-scrollbar-track {
+                background: #2c3e50;
+                border-radius: 2px;
+            }
+            .code-container::-webkit-scrollbar-thumb {
+                background: #3498db;
+                border-radius: 2px;
+            }
+            .bookmark-item {
+                transition: all 0.15s ease;
+                will-change: transform, background-color;
+            }
+            .bookmark-item:hover {
+                transform: translateX(2px);
+            }
+            .content-section {
+                animation: fadeIn 0.4s ease;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .scroll-optimized {
+                overflow-y: auto;
+                will-change: scroll-position;
+                contain: layout paint size;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+            }
+            /* 修复Firefox侧边栏滚动条兼容 */
+            .scroll-optimized {
+                scrollbar-color: #3498db #2c3e50;
+            }
+            .scroll-optimized::-webkit-scrollbar {
+                width: 4px;
+            }
+            .scroll-optimized::-webkit-scrollbar-track {
+                background: #2c3e50;
+            }
+            .scroll-optimized::-webkit-scrollbar-thumb {
+                background: #3498db;
+                border-radius: 2px;
+            }
+            .sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.5);
+                z-index: 30;
+                display: none;
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+            /* 代码高亮 - 兼容所有浏览器（移除webkit专属属性） */
+            .code-keyword { color: #ff7a93; }
+            .code-comment { color: #636e7b; font-style: italic; }
+            .code-string { color: #9ece6a; }
+            .code-function { color: #7aa2f7; }
+            .code-type { color: #bb9af7; }
+            .code-include { color: #2ac3de; }
+            .code-number { color: #ff9e64; }
+            .code-variable { color: #73daca; }
+            .code-operator { color: #f7768e; }
+            /* 复制按钮样式 */
+            .copy-btn {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                background: #3498db;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 2px 8px;
+                font-size: 12px;
+                cursor: pointer;
+                transition: background 0.2s ease;
+                z-index: 10;
+            }
+            .copy-btn:hover {
+                background: #2980b9;
+            }
+            .copy-btn.copied {
+                background: #27ae60;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen">
+    <div class="sidebar-overlay md:hidden" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    
+    <button class="fixed top-4 left-4 z-50 md:hidden w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg" onclick="toggleSidebar()">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <div class="flex flex-col md:flex-row min-h-screen max-w-7xl mx-auto md:gap-6 px-2 md:px-0">
+        <!-- 左侧目录 -->
+        <aside id="sidebar" class="fixed top-0 left-0 z-40 w-72 bg-primary text-white p-4 h-screen scroll-optimized transform -translate-x-full md:translate-x-0 transition-transform duration-300 md:static md:h-auto shrink-0">
+            <div class="mb-6 sticky top-0 bg-primary/95 py-2 z-10 flex justify-between items-center">
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight mb-1">ACM-PC</h1>
+                    <p class="text-gray-300 text-xs">Exam Practice</p>
+                </div>
+                <button class="md:hidden text-white" onclick="toggleSidebar()">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+  
+
+
+
+  
+            <nav class="space-y-0.5 pt-2">
+                <button 
+                    id="collatz-bookmark"
+                    class="w-full text-left py-1.5 px-2 rounded-md bg-accent text-white bookmark-item flex items-start text-sm"
+                    onclick="showContent('collatz'); closeSidebar()"
+                >
+                    <i class="fa fa-bookmark-o mr-2 text-xs mt-0.5"></i>
+                    <div>
+                        <span>PC/UVa 110101/100</span>
+                        <br><span class="ml-0 text-xs text-gray-200">3n+1 问题</span>
+                    </div>
+                </button>
+
+ 
+
+
+
+
+
+
+
+
+<!-- 侧边栏新增扫雷题目导航按钮（粘贴到原有侧边栏 nav 标签内） -->
+<button 
+    id="minesweeper-bookmark"
+    class="w-full text-left py-1.5 px-2 rounded-md hover:bg-secondary/50 text-gray-300 bookmark-item flex items-start text-sm"
+    onclick="showContent('minesweeper'); closeSidebar()"
+>
+    <i class="fa fa-bookmark-o mr-2 text-xs mt-0.5"></i>
+    <div>
+        <span>PC/UVa 110102/10189</span>
+        <br><span class="ml-0 text-xs text-gray-200">扫雷问题</span>
+    </div>
+</button>
+
+
+
+
+
+
+
+
+
+
+ 
+              <button 
+                    class="w-full text-left py-1.5 px-2 rounded-md hover:bg-secondary/50 text-gray-300 bookmark-item flex items-start text-sm opacity-50 cursor-not-allowed"
+                    disabled
+                >
+                    <i class="fa fa-circle-o mr-2 text-xs mt-0.5"></i>
+                    <span>待添加题目</span>
+                </button>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                <button 
+                    class="w-full text-left py-1.5 px-2 rounded-md hover:bg-secondary/50 text-gray-300 bookmark-item flex items-start text-sm opacity-50 cursor-not-allowed"
+                    disabled
+                >
+                    <i class="fa fa-circle-o mr-2 text-xs mt-0.5"></i>
+                    <span>待添加题目</span>
+                </button>
+            </nav>
+        </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 扫雷问题内容区（粘贴到主内容区 main 标签内，3n+1 内容区下方） -->
+<section id="minesweeper-content" class="content-section max-w-4xl mx-auto hidden">
+    <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <h2 class="text-2xl font-bold text-primary mb-4">PC/UVa 110102/10189 - 扫雷 (Minesweeper)</h2>
+        
+        <div class="prose prose-sm max-w-none">
+            <h3 class="text-lg font-semibold text-secondary mb-3">题目描述</h3>
+            <div class="bg-gray-50 p-4 rounded-md mb-6">
+                <p class="mb-2 text-sm">你玩过扫雷游戏吗？这个有趣的小游戏来自于某个快被忘却的操作系统。游戏的目标是找出一个 n×m 矩阵内的所有地雷。在本题中，你需要为每个单元格统计出它周围的地雷个数。每个单元格最多有 8 个相邻的单元格。</p>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">输入</h4>
+                <p class="mb-2 text-sm">输入将包含若干个矩阵。对于每一个矩阵，第一行包含两个数字 n 和 m (0 &lt; n,m ≤ 100)，分别代表这个矩阵的行数和列数。接下来的 n 行每行包含 m 个字符，即该矩阵。安全格子用 "." 表示，有地雷的格子用 "*" 表示。当 n = m = 0 时，表示输入结束。你的程序不应处理这一行。</p>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">输出</h4>
+                <p class="mb-2 text-sm">对于每一个矩阵，首先在单独的一行里打印序号：Field #x：其中 x 是数据编号，从 1 开始。接下来的 n 行中，读入的 "." 应该被该位置周围的地雷数所代替。输出的每两个相邻矩阵必须用一个空行隔开。</p>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">样例输入</h4>
+                <div class="bg-gray-100 p-2 rounded-md mb-2 font-mono text-xs">
+                    4 4<br>
+                    *...<br>
+                    ....<br>
+                    .*..<br>
+                    ....<br>
+                    3 5<br>
+                    **...<br>
+                    .....<br>
+                    .*...<br>
+                    0 0
+                </div>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">样例输出</h4>
+                <div class="bg-gray-100 p-2 rounded-md font-mono text-xs">
+                    Field #1:<br>
+                    *100<br>
+                    2210<br>
+                    1*10<br>
+                    1110<br>
+                    <br>
+                    Field #2:<br>
+                    **100<br>
+                    33200<br>
+                    1*100
+                </div>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">解题代码</h3>
+            <div class="code-container p-4 rounded-md mb-6 font-mono text-sm">
+                <!-- 复制按钮 -->
+                <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fa fa-copy mr-1"></i>复制代码
+                </button>
+<pre class="code-pre whitespace-pre-wrap">
+<span class="code-comment">// PC/UVa 110102/10189 Minesweeper</span>
+<span class="code-include">#include &lt;iostream&gt;</span>
+<span class="code-include">#include &lt;vector&gt;</span>
+<span class="code-include">#include &lt;string&gt;</span>
+<span class="code-include">#include &lt;fstream&gt;</span>
+<span class="code-include">#include &lt;stdexcept&gt;</span>
+<span class="code-include">#include &lt;random&gt;</span>
+<span class="code-include">#include &lt;algorithm&gt;</span>
+<span class="code-include">#include &lt;span&gt;</span>  <span class="code-comment">// C++20: Reduces copy operations and improves access efficiency</span>
+
+<span class="code-comment">// Global unified random number generator (avoids duplicate definition and ensures random consistency)</span>
+<span class="code-keyword">static</span> std::mt19937 rng(std::random_device{}());
+
+<span class="code-comment">/**
+ * @brief Counts the number of mines in the 8 adjacent cells of the target cell (i, j).
+ *
+ * This function checks all 8 surrounding cells (up, down, left, right, and four diagonals)
+ * of the specified cell (i, j). It skips the target cell itself and only counts valid cells
+ * within the grid bounds to avoid out-of-bounds access.
+ *
+ * @param grid Constant reference to the input mine grid, stored as a vector of strings.
+ * @param n Total number of rows in the mine grid.
+ * @param m Total number of columns in the mine grid.
+ * @param i Row index of the target cell to check.
+ * @param j Column index of the target cell to check.
+ * @return int The total number of adjacent mines (range from 0 to 8).
+ */</span>
+<span class="code-type">int</span> <span class="code-function">countAdjacentMines</span>(<span class="code-keyword">const</span> std::vector&lt;std::string&gt;& grid, <span class="code-type">int</span> n, <span class="code-type">int</span> m, <span class="code-type">int</span> i, <span class="code-type">int</span> j) {
+    <span class="code-type">int</span> count = <span class="code-number">0</span>;
+    <span class="code-comment">// Iterate through all 8 adjacent directions (di = -1, 0, 1; dj = -1, 0, 1)</span>
+    <span class="code-keyword">for</span> (<span class="code-type">int</span> di = <span class="code-number">-1</span>; di &lt;= <span class="code-number">1</span>; ++di) {
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> dj = <span class="code-number">-1</span>; dj &lt;= <span class="code-number">1</span>; ++dj) {
+            <span class="code-comment">// Skip the current target cell (no need to count itself as a mine)</span>
+            <span class="code-keyword">if</span> (di == <span class="code-number">0</span> && dj == <span class="code-number">0</span>) <span class="code-keyword">continue</span>;
+            <span class="code-comment">// Calculate the coordinates of the adjacent cell</span>
+            <span class="code-type">int</span> ni = i + di;
+            <span class="code-type">int</span> nj = j + dj;
+            <span class="code-comment">// Check if the adjacent cell is within the valid grid boundaries</span>
+            <span class="code-keyword">if</span> (ni &gt;= <span class="code-number">0</span> && ni &lt; n && nj &gt;= <span class="code-number">0</span> && nj &lt; m) {
+                <span class="code-comment">// Increment count if the adjacent cell contains a mine ('*')</span>
+                <span class="code-keyword">if</span> (grid[ni][nj] == <span class="code-string">'*'</span>) {
+                    ++count;
+                }
+            }
+        }
+    }
+    <span class="code-keyword">return</span> count;
+}
+
+<span class="code-comment">/**
+ * @brief Generates a single random mine grid with specified dimensions and mine density.
+ *
+ * This function initializes a grid filled with safe cells ('.') first, then randomly
+ * sets cells to mines ('*') based on the given mine density probability. It uses the
+ * global unified random number generator to ensure diverse and non-repetitive results.
+ *
+ * @param n Number of rows in the generated mine grid.
+ * @param m Number of columns in the generated mine grid.
+ * @param mineDensity Probability of a cell being a mine (range from 0.0 to 1.0, e.g., 0.2 = 20% mines).
+ * @return std::vector<std::string> The generated mine grid, each string represents a single row of the grid.
+ */</span>
+std::vector&lt;std::string&gt; <span class="code-function">generateMineGrid</span>(<span class="code-type">int</span> n, <span class="code-type">int</span> m, <span class="code-type">double</span> mineDensity) {
+    <span class="code-comment">// Bernoulli distribution to generate boolean values (true for mine, false for safe cell)</span>
+    std::bernoulli_distribution dist(mineDensity);
+
+    <span class="code-comment">// Initialize grid with all safe cells ('.')</span>
+    std::vector&lt;std::string&gt; grid(n, std::string(m, <span class="code-string">'.'</span>));
+    <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; n; ++i) {
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> j = <span class="code-number">0</span>; j &lt; m; ++j) {
+            <span class="code-comment">// Randomly set the current cell to a mine based on the density distribution</span>
+            <span class="code-keyword">if</span> (dist(rng)) {
+                grid[i][j] = <span class="code-string">'*'</span>;
+            }
+        }
+    }
+    <span class="code-keyword">return</span> grid;
+}
+
+<span class="code-comment">/**
+ * @brief Automatically generates multiple mine grid samples and saves them to testin.txt.
+ *
+ * This function generates a specified number of mine grids with random dimensions (within the set range),
+ * writes them to the testin.txt file in the required format, and appends the termination line "0 0" at the end.
+ * It also provides a user prompt before overwriting the existing file (if any).
+ */</span>
+<span class="code-type">void</span> <span class="code-function">outputGeneratedSampleTestin</span>() {
+    <span class="code-keyword">const</span> <span class="code-type">int</span> numFields = <span class="code-number">5</span>;          <span class="code-comment">// Total number of mine grids to generate</span>
+    <span class="code-keyword">const</span> <span class="code-type">int</span> minSize = <span class="code-number">3</span>;            <span class="code-comment">// Minimum number of rows/columns for each grid</span>
+    <span class="code-keyword">const</span> <span class="code-type">int</span> maxSize = <span class="code-number">10</span>;           <span class="code-comment">// Maximum number of rows/columns for each grid</span>
+    <span class="code-keyword">const</span> <span class="code-type">double</span> mineDensity = <span class="code-number">0.2</span>;   <span class="code-comment">// Probability of each cell being a mine (20%)</span>
+    <span class="code-keyword">const</span> std::string outputFileName = <span class="code-string">"testin.txt"</span>; <span class="code-comment">// Output file name for generated samples</span>
+
+    <span class="code-comment">// Inform user that the existing file will be overwritten if it exists</span>
+    std::cout &lt;&lt; <span class="code-string">"Info: Preparing to generate mine samples, will overwrite \""</span> &lt;&lt; outputFileName &lt;&lt; <span class="code-string">"\" if it exists."</span> &lt;&lt; std::endl;
+    <span class="code-comment">// Open the output file in write mode (creates the file if it does not exist)</span>
+    std::ofstream outputFile(outputFileName);
+    <span class="code-keyword">if</span> (!outputFile.is_open()) {
+        std::cerr &lt;&lt; <span class="code-string">"Error: Can't create output file \""</span> &lt;&lt; outputFileName &lt;&lt; <span class="code-string">"\"."</span> &lt;&lt; std::endl;
+        <span class="code-keyword">return</span>;
+    }
+
+    <span class="code-comment">// Uniform distribution to generate random grid dimensions (n and m)</span>
+    std::uniform_int_distribution&lt;<span class="code-type">int</span>&gt; sizeDist(minSize, maxSize);
+
+    <span class="code-comment">// Generate each mine grid and write to the output file</span>
+    <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; numFields; ++i) {
+        <span class="code-comment">// Generate random row and column counts for the current grid</span>
+        <span class="code-type">int</span> n = sizeDist(rng);
+        <span class="code-type">int</span> m = sizeDist(rng);
+
+        <span class="code-comment">// Write the grid dimensions to the file (first line of each field)</span>
+        outputFile &lt;&lt; n &lt;&lt; <span class="code-string">" "</span> &lt;&lt; m &lt;&lt; std::endl;
+
+        <span class="code-comment">// Generate the mine grid and write each row to the file</span>
+        std::vector&lt;std::string&gt; grid = generateMineGrid(n, m, mineDensity);
+        <span class="code-keyword">for</span> (<span class="code-keyword">const</span> <span class="code-keyword">auto</span>& row : grid) {
+            outputFile &lt;&lt; row &lt;&lt; std::endl;
+        }
+    }
+
+    <span class="code-comment">// Write the termination line to signal the end of input (required by the mine sweeper logic)</span>
+    outputFile &lt;&lt; <span class="code-string">"0 0"</span> &lt;&lt; std::endl;
+
+    <span class="code-comment">// Close the output file to release system resources</span>
+    outputFile.close();
+    std::cout &lt;&lt; <span class="code-string">"Successfully generated "</span> &lt;&lt; numFields &lt;&lt; <span class="code-string">" mine grids."</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="code-string">"Result saved to \""</span> &lt;&lt; outputFileName &lt;&lt; <span class="code-string">"\"."</span> &lt;&lt; std::endl;
+}
+
+<span class="code-comment">/**
+ * @brief Outputs the processed mine grid result to both console and testout.txt with unified format.
+ *
+ * This function ensures the output format is consistent between the console and the output file,
+ * including the "Field #x:" header and the processed grid content. It reuses the same result data
+ * to avoid redundant calculations and ensure data consistency.
+ *
+ * @param outputFile Reference to the ofstream object for writing to testout.txt.
+ * @param result Constant reference to the processed result grid (mine counts and preserved mines).
+ * @param fieldNum The sequential number of the current field (for formatting the header).
+ */</span>
+<span class="code-type">void</span> <span class="code-function">outputResult</span>(std::ofstream& outputFile, <span class="code-keyword">const</span> std::vector&lt;std::string&gt;& result, <span class="code-type">int</span> fieldNum) {
+    <span class="code-comment">// Output the result to the console (user-friendly real-time feedback)</span>
+    std::cout &lt;&lt; <span class="code-string">"Field #"</span> &lt;&lt; fieldNum &lt;&lt; <span class="code-string">":"</span> &lt;&lt; std::endl;
+    <span class="code-keyword">for</span> (<span class="code-keyword">const</span> <span class="code-keyword">auto</span>& row : result) {
+        std::cout &lt;&lt; row &lt;&lt; std::endl;
+    }
+
+    <span class="code-comment">// Output the same result to testout.txt (for permanent storage and later verification)</span>
+    outputFile &lt;&lt; <span class="code-string">"Field #"</span> &lt;&lt; fieldNum &lt;&lt; <span class="code-string">":"</span> &lt;&lt; std::endl;
+    <span class="code-keyword">for</span> (<span class="code-keyword">const</span> <span class="code-keyword">auto</span>& row : result) {
+        outputFile &lt;&lt; row &lt;&lt; std::endl;
+    }
+}
+
+<span class="code-comment">/**
+ * @brief Main function: Orchestrates the entire process (generate input → process → double output).
+ *
+ * This function coordinates the full workflow: first generates the input sample (testin.txt),
+ * then reads the input file, processes each mine grid to count adjacent mines, and finally
+ * outputs the result to both the console and testout.txt. It also includes error handling
+ * for file operations to ensure robust execution.
+ *
+ * @return int Program exit code (0 for successful execution, 1 for critical errors).
+ */</span>
+<span class="code-type">int</span> <span class="code-function">main</span>() {
+    <span class="code-comment">// Define fixed input and output file paths (required by the task requirements)</span>
+    <span class="code-keyword">const</span> std::string inputFileName = <span class="code-string">"testin.txt"</span>;
+    <span class="code-keyword">const</span> std::string outputFileName = <span class="code-string">"testout.txt"</span>;
+
+    <span class="code-comment">// Step 1: Automatically generate the input mine samples (save to testin.txt)</span>
+    outputGeneratedSampleTestin();
+
+    <span class="code-comment">// Step 2: Open the input file (read-only) and output file (write-only, overwrite existing)</span>
+    std::ifstream inputFile(inputFileName);
+    std::ofstream outputFile(outputFileName);
+
+    <span class="code-comment">// Step 3: Validate if both files are opened successfully (error handling for file operations)</span>
+    <span class="code-keyword">if</span> (!inputFile.is_open()) {
+        std::cerr &lt;&lt; <span class="code-string">"Error: Cannot open input file \""</span> &lt;&lt; inputFileName &lt;&lt; <span class="code-string">"\"."</span> &lt;&lt; std::endl;
+        std::cerr &lt;&lt; <span class="code-string">"Please make sure the file exists and is in the correct directory."</span> &lt;&lt; std::endl;
+        <span class="code-keyword">return</span> <span class="code-number">1</span>;
+    }
+    <span class="code-keyword">if</span> (!outputFile.is_open()) {
+        std::cerr &lt;&lt; <span class="code-string">"Error: Cannot create or open output file \""</span> &lt;&lt; outputFileName &lt;&lt; <span class="code-string">"\"."</span> &lt;&lt; std::endl;
+        inputFile.close(); <span class="code-comment">// Close the input file before exiting to avoid resource leaks</span>
+        <span class="code-keyword">return</span> <span class="code-number">1</span>;
+    }
+
+    <span class="code-type">int</span> n, m;                <span class="code-comment">// Dimensions of the current mine grid (rows, columns)</span>
+    <span class="code-type">int</span> fieldNum = <span class="code-number">0</span>;        <span class="code-comment">// Sequential number of the current field (for output formatting)</span>
+
+    <span class="code-comment">// Step 4: Read and process each mine grid from testin.txt until the termination line (0 0)</span>
+    <span class="code-keyword">while</span> (inputFile &gt;&gt; n &gt;&gt; m && (n != <span class="code-number">0</span> || m != <span class="code-number">0</span>)) {
+        <span class="code-comment">// Print an empty line between fields (except for the first field) to maintain format consistency</span>
+        <span class="code-keyword">if</span> (fieldNum &gt; <span class="code-number">0</span>) {
+            std::cout &lt;&lt; std::endl;
+            outputFile &lt;&lt; std::endl; <span class="code-comment">// Sync the empty line to the output file</span>
+        }
+        fieldNum++;
+
+        <span class="code-comment">// Ignore the remaining newline character after reading n and m to avoid empty line issues with getline</span>
+        inputFile.ignore();
+
+        <span class="code-comment">// Step 5: Read the entire mine grid from the input file</span>
+        std::vector&lt;std::string&gt; grid(n);
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; n; ++i) {
+            std::getline(inputFile, grid[i]);
+            <span class="code-comment">// Validate the length of each row to ensure it matches the column count m (avoid format errors)</span>
+            <span class="code-keyword">if</span> (grid[i].length() != <span class="code-keyword">static_cast</span>&lt;size_t&gt;(m)) {
+                std::cerr &lt;&lt; <span class="code-string">"Error: Line "</span> &lt;&lt; i + <span class="code-number">1</span> &lt;&lt; <span class="code-string">" of field "</span> &lt;&lt; fieldNum &lt;&lt; <span class="code-string">" has invalid length."</span> &lt;&lt; std::endl;
+                <span class="code-comment">// Close both files before exiting to release system resources and avoid leaks</span>
+                inputFile.close();
+                outputFile.close();
+                <span class="code-keyword">return</span> <span class="code-number">1</span>;
+            }
+        }
+
+        <span class="code-comment">// Step 6: Process the mine grid to generate the result (count adjacent mines for safe cells)</span>
+        std::vector&lt;std::string&gt; result(n, std::string(m, <span class="code-string">' '</span>));
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; n; ++i) {
+            <span class="code-comment">// C++20: Use std::span to create a non-copy view of the grid row for improved access efficiency</span>
+            std::span&lt;<span class="code-keyword">const</span> <span class="code-type">char</span>&gt; grid_row_span(grid[i].c_str(), m);
+            <span class="code-keyword">for</span> (<span class="code-type">int</span> j = <span class="code-number">0</span>; j &lt; m; ++j) {
+                <span class="code-keyword">if</span> (grid_row_span[j] == <span class="code-string">'*'</span>) {
+                    <span class="code-comment">// Preserve the mine cell ('*') in the result grid without modification</span>
+                    result[i][j] = <span class="code-string">'*'</span>;
+                }
+                <span class="code-keyword">else</span> {
+                    <span class="code-comment">// Count adjacent mines and convert the count to a character (0-8) for the result grid</span>
+                    <span class="code-type">int</span> mineCount = countAdjacentMines(grid, n, m, i, j);
+                    result[i][j] = <span class="code-string">'0'</span> + mineCount;
+                }
+            }
+        }
+
+        <span class="code-comment">// Step 7: Output the processed result to both console and testout.txt</span>
+        outputResult(outputFile, result, fieldNum);
+    }
+
+    <span class="code-comment">// Step 8: Close both files to release system resources and avoid resource leaks</span>
+    inputFile.close();
+    outputFile.close();
+
+    <span class="code-comment">// Step 9: Notify the user that the entire process has completed successfully</span>
+    std::cout &lt;&lt; <span class="code-string">"\n\nProcess completed successfully."</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="code-string">"Result has been saved to \""</span> &lt;&lt; outputFileName &lt;&lt; <span class="code-string">"\"."</span> &lt;&lt; std::endl;
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}
+</pre>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">代码说明</h3>
+            <div class="bg-gray-50 p-4 rounded-md">
+                <p class="mb-2 text-sm">1. <strong>核心函数</strong>：<code class="bg-gray-100 px-1 rounded">countAdjacentMines</code> 遍历目标单元格8个相邻方向，统计地雷数量，严格校验边界避免越界；</p>
+                <p class="mb-2 text-sm">2. <strong>测试数据生成</strong>：<code class="bg-gray-100 px-1 rounded">generateMineGrid</code> + <code class="bg-gray-100 px-1 rounded">outputGeneratedSampleTestin</code> 自动生成随机扫雷矩阵并写入文件，方便测试；</p>
+                <p class="mb-2 text-sm">3. <strong>结果输出</strong>：<code class="bg-gray-100 px-1 rounded">outputResult</code> 统一控制台和文件输出格式，保证样例要求的空行分隔、序号标注；</p>
+                <p class="mb-2 text-sm">4. <strong>鲁棒性</strong>：校验文件打开状态、矩阵行长度，避免格式错误导致程序崩溃；</p>
+                <p class="mb-2 text-sm">5. <strong>现代C++特性</strong>：使用 <code class="bg-gray-100 px-1 rounded">std::span</code> 减少数据拷贝，<code class="bg-gray-100 px-1 rounded">std::random</code> 生成随机测试用例，提升代码效率和可测试性。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+        <!-- 主内容区 -->
+        <main class="flex-1 p-4 md:p-8">
+            <!-- 3n+1 问题内容区 -->
+            <section id="collatz-content" class="content-section max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <h2 class="text-2xl font-bold text-primary mb-4">PC/UVa 110101/100 - 3n+1 问题</h2>
+                    
+                    <div class="prose prose-sm max-w-none">
+                        <h3 class="text-lg font-semibold text-secondary mb-3">题目描述</h3>
+                        <div class="bg-gray-50 p-4 rounded-md mb-6">
+                            <p class="mb-2 text-sm">考虑如下的序列生成算法：从整数 n 开始，如果 n 是偶数，把它除以 2；如果 n 是奇数，把它乘 3 加 1。用新得到的值重复上述步骤，直到 n = 1 时停止。例如，n = 22 时该算法生成的序列是：</p>
+                            <p class="mb-2 text-sm font-medium text-center">22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1</p>
+                            <p class="mb-2 text-sm">人们猜想（没有得到证明）对于任意整数 n，该算法总能终止于 n = 1。这个猜想对于至少 1 000 000 内的整数都是正确的。</p>
+                            <p class="mb-2 text-sm">对于给定的 n，该序列的元素（包括 1）个数被称为 n 的循环节长度。在上述例子中，22 的循环节长度为 16。输入两个数 i 和 j，你的任务是计算 i 到 j（包含 i 和 j）之间的整数中，循环节长度的最大值。</p>
+                            
+                            <h4 class="font-semibold mt-4 mb-2 text-sm">输入</h4>
+                            <p class="mb-2 text-sm">输入每行包含两个整数 i 和 j。所有整数大于 0，小于 1 000 000。</p>
+                            
+                            <h4 class="font-semibold mt-4 mb-2 text-sm">输出</h4>
+                            <p class="mb-2 text-sm">对于每对整数 i 和 j，按原来的顺序输出 i 和 j，然后输出二者之间的整数中的最大循环节长度。这三个整数应该用单个空格隔开，且在同一行输出。对于读入的每一组数据，在输出中应位于单独的一行。</p>
+                            
+                            <h4 class="font-semibold mt-4 mb-2 text-sm">样例输入</h4>
+                            <div class="bg-gray-100 p-2 rounded-md mb-2 font-mono text-xs">
+                                1 10<br>
+                                100 200<br>
+                                201 210<br>
+                                900 1000
+                            </div>
+                            
+                            <h4 class="font-semibold mt-4 mb-2 text-sm">样例输出</h4>
+                            <div class="bg-gray-100 p-2 rounded-md font-mono text-xs">
+                                1 10 20<br>
+                                100 200 125<br>
+                                201 210 89<br>
+                                900 1000 174
+                            </div>
+                        </div>
+
+                        <h3 class="text-lg font-semibold text-secondary mb-3">解题代码</h3>
+                        <div class="code-container p-4 rounded-md mb-6 font-mono text-sm">
+                            <!-- 复制按钮 -->
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fa fa-copy mr-1"></i>复制代码
+                            </button>
+							
+							
+														
+<pre class="code-pre whitespace-pre-wrap">
+<span class="code-comment">// 3n+1 问题 - PC/UVa:11101/100</span>
+<span class="code-include">#include &lt;iostream&gt;</span>
+<span class="code-include">#include &lt;algorithm&gt;</span> <span class="code-comment">//for std::min , std::max</span>
+<span class="code-include">#include &lt;cstdint&gt;</span>  <span class="code-comment">//for fixed-size integer type to avoid overflow</span>
+<span class="code-include">#include &lt;vector&gt;</span>
+<span class="code-include">#include &lt;chrono&gt;</span>
+<span class="code-include">#include &lt;iomanip&gt;</span>
+<span class="code-include">#include &lt;format&gt;</span>
+<span class="code-include">#include &lt;concepts&gt;</span>
+<span class="code-include">#include &lt;span&gt;</span>
+
+<span class="code-comment">//concept to constrain integer types(replaces std::is_integral + std::enable_if)</span>
+<span class="code-keyword">template</span>&lt;<span class="code-keyword">typename</span> T&gt;
+<span class="code-keyword">concept</span> IntegralType = std::is_integral_v&lt;T&gt; && std::is_unsigned_v&lt;T&gt;;
+
+<span class="code-comment">/*
+performance test function: compare normal and memoized version
+range: test interval(std::span for lightweight, no-copy range)
+repeat: number for test repeats to get stable average time
+*/</span>
+<span class="code-keyword">template</span>&lt;<span class="code-keyword">typename</span> Func, IntegralType T&gt;
+<span class="code-type">double</span> testCollatzPerfermance(Func func, std::span&lt;<span class="code-keyword">const</span> T&gt;range, <span class="code-type">uint32_t</span> repeat) <span class="code-keyword">noexcept</span> {
+    <span class="code-keyword">static_assert</span>(std::is_invocable_r_v&lt;<span class="code-type">uint64_t</span>, Func, T&gt;,
+        <span class="code-string">"Function must return uint64_t and take T as parameter"</span>);
+
+    <span class="code-comment">//record start time(high_resolution_clock for maximum precision)</span>
+    <span class="code-keyword">auto</span> start = std::chrono::high_resolution_clock::now();
+
+    <span class="code-type">uint64_t</span> final_dummy_max = <span class="code-number">0</span>;
+    <span class="code-keyword">for</span> (<span class="code-type">uint32_t</span> r = <span class="code-number">0</span>; r &lt; repeat; r++) {
+        <span class="code-type">uint64_t</span> dummy_max = <span class="code-number">0</span>;  <span class="code-comment">//to avoid compiler optimization</span>
+        <span class="code-keyword">for</span> (<span class="code-keyword">const</span> <span class="code-keyword">auto</span>& num : range) {
+            <span class="code-type">uint64_t</span> len = func(<span class="code-keyword">static_cast</span>&lt;<span class="code-type">uint64_t</span>&gt;(num));
+            <span class="code-keyword">if</span> (len &gt; dummy_max) {
+                dummy_max = len;
+            }
+        }
+        final_dummy_max = dummy_max;
+    }
+
+    std::cout &lt;&lt; std::format(<span class="code-string">"Test dummy max: {}\n"</span>, final_dummy_max);
+
+    <span class="code-keyword">auto</span> end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration&lt;<span class="code-type">double</span>, std::milli&gt; elapsed = end - start;
+
+    <span class="code-keyword">return</span> elapsed.count() / <span class="code-keyword">static_cast</span>&lt;<span class="code-type">double</span>&gt;(repeat);
+}
+
+<span class="code-type">uint64_t</span> <span class="code-function">collatzCycleLength</span>(<span class="code-type">uint64_t</span> n) {
+    <span class="code-type">uint64_t</span> count = <span class="code-number">1</span>;
+    <span class="code-keyword">while</span> (n != <span class="code-number">1</span>) {
+        <span class="code-keyword">if</span> (n % <span class="code-number">2</span> == <span class="code-number">0</span>) {
+            n /= <span class="code-number">2</span>;
+        }
+        <span class="code-keyword">else</span>
+        {
+            n = <span class="code-number">3</span> * n + <span class="code-number">1</span>;
+        }
+        count++;
+    }
+    <span class="code-keyword">return</span> count;
+}
+
+<span class="code-comment">//optimized version with memoization to avoid redundant calculations</span>
+<span class="code-comment">//cache stores computed cycle lengths to speed up repeated queries</span>
+<span class="code-keyword">constexpr</span> <span class="code-type">uint64_t</span> MAX_CACHE = <span class="code-number">1000000</span>;
+<span class="code-type">uint64_t</span> cache[MAX_CACHE + <span class="code-number">1</span>] = {<span class="code-number">0</span>};
+
+<span class="code-comment">//memoized cycle length calculation</span>
+<span class="code-type">uint64_t</span> <span class="code-function">collatzCycleLengthMemo</span>(<span class="code-type">uint64_t</span> n) {
+    <span class="code-keyword">if</span> (n &lt;= MAX_CACHE && cache[n] != <span class="code-number">0</span>) {
+        <span class="code-keyword">return</span> cache[n];
+    }
+
+    <span class="code-type">uint64_t</span> count = <span class="code-number">1</span>;
+    <span class="code-type">uint64_t</span> temp = n;
+    <span class="code-keyword">while</span> (temp != <span class="code-number">1</span>) {
+        <span class="code-keyword">if</span> (temp % <span class="code-number">2</span> == <span class="code-number">0</span>) {
+            temp /= <span class="code-number">2</span>;
+        }
+        <span class="code-keyword">else</span> {
+            temp = <span class="code-number">3</span> * temp + <span class="code-number">1</span>;
+        }
+        count++;
+    }
+    <span class="code-keyword">if</span> (n &lt;= MAX_CACHE) {
+        cache[n] = count;
+    }
+    <span class="code-keyword">return</span> count;
+}
+
+<span class="code-type">int</span> <span class="code-function">main</span>()
+{
+    <span class="code-keyword">constexpr</span> <span class="code-type">uint64_t</span> TEST_LEFT = <span class="code-number">1</span>;
+    <span class="code-keyword">constexpr</span> <span class="code-type">uint64_t</span> TEST_RIGHT = <span class="code-number">1000000</span>;
+    <span class="code-keyword">constexpr</span> <span class="code-type">uint64_t</span> TEST_REPEAT = <span class="code-number">5</span>;
+
+    std::vector&lt;<span class="code-type">uint64_t</span>&gt; test_range;
+    test_range.reserve(TEST_RIGHT - TEST_LEFT + <span class="code-number">1</span>);
+    <span class="code-keyword">for</span> (<span class="code-type">uint64_t</span> num = TEST_LEFT; num &lt;= TEST_RIGHT; num++) {
+        test_range.push_back(num);
+    }
+
+    <span class="code-comment">//wrap vector with std::span</span>
+    std::span&lt;<span class="code-keyword">const</span> <span class="code-type">uint64_t</span>&gt; test_span(test_range);
+
+    <span class="code-type">double</span> normal_avg_time = testCollatzPerfermance(collatzCycleLength, test_span, TEST_REPEAT);
+    <span class="code-type">double</span> memo_avg_time = testCollatzPerfermance(collatzCycleLengthMemo, test_span, TEST_REPEAT);
+
+    std::cout &lt;&lt; std::format(<span class="code-string">"=== Collatz sequence Performance Test ===\n"</span>);
+    std::cout &lt;&lt; std::format(<span class="code-string">"Test range: [{}, {}]\n"</span>, TEST_LEFT, TEST_RIGHT);
+    std::cout &lt;&lt; std::format(<span class="code-string">"Test repeats: {}\n"</span>, TEST_REPEAT);
+    std::cout &lt;&lt; std::format(<span class="code-string">"------------------------------------------\n"</span>);
+    std::cout &lt;&lt; std::format(<span class="code-string">"Normal version average time: {:.3f} ms\n"</span>, normal_avg_time);
+    std::cout &lt;&lt; std::format(<span class="code-string">"Memoized version average time: {:.3f} ms\n"</span>, memo_avg_time);
+    std::cout &lt;&lt; std::format(<span class="code-string">"-------------------------------------------\n"</span>);
+    std::cout &lt;&lt; std::format(<span class="code-string">"Performance speedup: {:.2f}x faster\n"</span>, normal_avg_time / memo_avg_time);
+
+    std::cout &lt;&lt; std::format(<span class="code-string">"\n=== Traditional Collate Query ===\n"</span>);
+    <span class="code-type">uint64_t</span> i, j;
+    <span class="code-keyword">while</span> (std::cin &gt;&gt; i &gt;&gt; j) {
+        <span class="code-keyword">const</span> <span class="code-type">uint64_t</span> original_i = i;
+        <span class="code-keyword">const</span> <span class="code-type">uint64_t</span> original_j = j;
+        <span class="code-keyword">const</span> <span class="code-type">uint64_t</span> left = std::min(i, j);
+        <span class="code-keyword">const</span> <span class="code-type">uint64_t</span> right = std::max(i, j);
+
+        <span class="code-type">uint64_t</span> max_len = <span class="code-number">0</span>;
+        <span class="code-keyword">for</span> (<span class="code-type">uint64_t</span> num = left; num &lt;= right; num++)
+        {
+            <span class="code-keyword">const</span> <span class="code-type">uint64_t</span> len = collatzCycleLengthMemo(num);
+            <span class="code-keyword">if</span> (len &gt; max_len) {
+                max_len = len;
+            }
+        }
+        std::cout &lt;&lt; std::format(<span class="code-string">"{} {} {}\n"</span>, original_i, original_j, max_len);
+    }
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}
+</pre>
+                        </div>
+
+                        <h3 class="text-lg font-semibold text-secondary mb-3">代码说明</h3>
+                        <div class="bg-gray-50 p-4 rounded-md">
+                            <p class="mb-2 text-sm">1. <strong>核心函数</strong>：<code class="bg-gray-100 px-1 rounded">collatzCycleLength</code> 计算单个数字的循环节长度，<code class="bg-gray-100 px-1 rounded">collatzCycleLengthMemo</code> 增加缓存优化，避免重复计算；</p>
+                            <p class="mb-2 text-sm">2. <strong>性能测试</strong>：<code class="bg-gray-100 px-1 rounded">testCollatzPerfermance</code> 对比普通版和缓存版的执行效率，输出平均耗时和加速比；</p>
+                            <p class="mb-2 text-sm">3. <strong>数据类型</strong>：使用 <code class="bg-gray-100 px-1 rounded">uint64_t</code> 避免数值溢出，适配 100万 以内的计算；</p>
+                            <p class="mb-2 text-sm">4. <strong>鲁棒性</strong>：兼容输入 <code class="bg-gray-100 px-1 rounded">i &gt; j</code> 的情况，通过 <code class="bg-gray-100 px-1 rounded">std::min/max</code> 确定遍历范围；</p>
+                            <p class="mb-2 text-sm">5. <strong>现代C++特性</strong>：使用 <code class="bg-gray-100 px-1 rounded">concept</code> 约束类型、<code class="bg-gray-100 px-1 rounded">std::span</code> 减少容器拷贝，提升性能。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- 预留其他题目内容区 -->
+            <section id="other-content" class="content-section max-w-4xl mx-auto hidden">
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-2xl font-bold text-primary mb-4">待添加题目</h2>
+                    <p class="text-gray-600">请选择左侧已完成的题目查看详情。</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        // 切换内容显示
+        function showContent(contentId) {
+            // 隐藏所有内容区
+            document.querySelectorAll('[id$="-content"]').forEach(section => {
+                section.classList.add('hidden');
+            });
+            // 显示目标内容区
+            document.getElementById(`${contentId}-content`).classList.remove('hidden');
+            
+            // 更新书签激活状态
+            document.querySelectorAll('.bookmark-item').forEach(btn => {
+                btn.classList.remove('bg-accent', 'text-white');
+                btn.classList.add('hover:bg-secondary/50', 'text-gray-300');
+            });
+            const activeBtn = document.getElementById(`${contentId}-bookmark`);
+            if (activeBtn) {
+                activeBtn.classList.remove('hover:bg-secondary/50', 'text-gray-300');
+                activeBtn.classList.add('bg-accent', 'text-white');
+            }
+        }
+
+        // 切换侧边栏（移动端）
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('active');
+            document.body.classList.toggle('overflow-hidden'); // 防止滚动穿透
+        }
+
+        // 关闭侧边栏（移动端点击导航后）
+        function closeSidebar() {
+            if (window.innerWidth < 768) { // 仅移动端关闭
+                document.getElementById('sidebar').classList.add('-translate-x-full');
+                document.getElementById('sidebarOverlay').classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        // 复制代码功能
+        function copyCode(btn) {
+            // 获取代码块内容
+            const codePre = btn.nextElementSibling;
+            const codeText = codePre.textContent.trim();
+            
+            // 复制到剪贴板
+            navigator.clipboard.writeText(codeText).then(() => {
+                // 按钮状态反馈
+                btn.classList.add('copied');
+                btn.innerHTML = '<i class="fa fa-check mr-1"></i>复制成功';
+                
+                // 2秒后恢复原状态
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<i class="fa fa-copy mr-1"></i>复制代码';
+                }, 2000);
+            }).catch(err => {
+                alert('复制失败：' + err);
+            });
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            // 默认显示3n+1问题
+            showContent('collatz');
+            
+            // 禁用按钮样式优化
+            document.querySelectorAll('button[disabled]').forEach(btn => {
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+            });
+        });
+    </script>
+</body>
+</html>
