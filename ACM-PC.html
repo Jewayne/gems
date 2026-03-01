@@ -216,6 +216,148 @@
 
 
 
+
+<!-- 侧边栏新增旅行题目导航按钮（粘贴到原有侧边栏 nav 标签内） -->
+<button 
+    id="trip-bookmark"
+    class="w-full text-left py-1.5 px-2 rounded-md hover:bg-secondary/50 text-gray-300 bookmark-item flex items-start text-sm"
+    onclick="showContent('trip'); closeSidebar()"
+>
+    <i class="fa fa-bookmark-o mr-2 text-xs mt-0.5"></i>
+    <div>
+        <span>PC/UVa 110103/10137</span>
+        <br><span class="ml-0 text-xs text-gray-200">旅行（The Trip）</span>
+    </div>
+</button>
+
+
+
+
+
+
+
+
+
+
+<!-- 侧边栏新增：液晶显示屏题目导航按钮（粘贴到侧边栏nav标签内） -->
+<button 
+    id="lcd-bookmark"
+    class="w-full text-left py-1.5 px-2 rounded-md hover:bg-secondary/50 text-gray-300 bookmark-item flex items-start text-sm"
+    onclick="showContent('lcd'); closeSidebar()"
+>
+    <i class="fa fa-bookmark-o mr-2 text-xs mt-0.5"></i>
+    <div>
+        <span>PC/UVa 110104/706</span>
+        <br><span class="ml-0 text-xs text-gray-200">液晶显示屏 (LC-Display)</span>
+    </div>
+</button>
+
+
+
+
+
+
+
+
+
+<!-- 侧边栏新增：画布编辑器导航按钮（粘贴到侧边栏nav标签内） -->
+<button 
+    id="canvas-bookmark"
+    class="w-full text-left py-1.5 px-2 rounded-md hover:bg-secondary/50 text-gray-300 bookmark-item flex items-start text-sm"
+    onclick="showContent('canvas'); closeSidebar()"
+>
+    <i class="fa fa-bookmark-o mr-2 text-xs mt-0.5"></i>
+    <div>
+        <span>PC/UVa 110105/10267</span>
+        <br><span class="ml-0 text-xs text-gray-200">图形化编辑器 (Graphical Editor)</span>
+    </div>
+</button>
+
+
+
+
+
+
+
+
+
+<!-- 侧边栏新增：解释器导航按钮（粘贴到侧边栏nav标签内） -->
+<button 
+    id="interpreter-bookmark"
+    class="w-full text-left py-1.5 px-2 rounded-md hover:bg-secondary/50 text-gray-300 bookmark-item flex items-start text-sm"
+    onclick="showContent('interpreter'); closeSidebar()"
+>
+    <i class="fa fa-bookmark-o mr-2 text-xs mt-0.5"></i>
+    <div>
+        <span>PC/UVa 110106/10033</span>
+        <br><span class="ml-0 text-xs text-gray-200">解释器 (Interpreter)</span>
+    </div>
+</button>
+
+
+
+
+
+
+
+
+
+<!-- 侧边栏新增：将军问题导航按钮（粘贴到侧边栏nav标签内） -->
+<button 
+    id="check-the-check-bookmark"
+    class="w-full text-left py-1.5 px-2 rounded-md hover:bg-secondary/50 text-gray-300 bookmark-item flex items-start text-sm"
+    onclick="showContent('check-the-check'); closeSidebar()"
+>
+    <i class="fa fa-bookmark-o mr-2 text-xs mt-0.5"></i>
+    <div>
+        <span>PC/UVa 110107/10196</span>
+        <br><span class="ml-0 text-xs text-gray-200">将军 (Check the Check)</span>
+    </div>
+</button>
+
+
+
+
+
+
+
+
+
+
+<!-- 侧边栏新增：澳大利亚投票导航按钮（粘贴到侧边栏nav标签内） -->
+<button 
+    id="australian-voting-bookmark"
+    class="w-full text-left py-1.5 px-2 rounded-md hover:bg-secondary/50 text-gray-300 bookmark-item flex items-start text-sm"
+    onclick="showContent('australian-voting'); closeSidebar()"
+>
+    <i class="fa fa-bookmark-o mr-2 text-xs mt-0.5"></i>
+    <div>
+        <span>PC/UVa 110108/10142</span>
+        <br><span class="ml-0 text-xs text-gray-200">澳大利亚投票 (Australian Voting)</span>
+    </div>
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
               <button 
                     class="w-full text-left py-1.5 px-2 rounded-md hover:bg-secondary/50 text-gray-300 bookmark-item flex items-start text-sm opacity-50 cursor-not-allowed"
@@ -248,6 +390,1859 @@
             </nav>
         </aside>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主内容区新增：澳大利亚投票题解（粘贴到main标签内最后一个题目section下方） -->
+<section id="australian-voting-content" class="content-section max-w-4xl mx-auto hidden">
+    <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <h2 class="text-2xl font-bold text-primary mb-4">澳大利亚投票 (Australian Voting)</h2>
+        <p class="text-sm text-gray-600 mb-4">PC/UVa 题号: 110108/10142</p>
+        
+        <div class="prose prose-sm max-w-none">
+            <p class="mb-4 text-sm">澳大利亚投票系统要求选民们将所有候选人按愿意选择的程度排序，一张选票就是一个排序。一开始，每张选票的首选项将被统计。若有候选人得票超过 50%，他将直接胜出；否则，所有并列得票最低的候选人出局，而那些将出局候选人排在第一位的选票将被重新统计为排名最高的未出局候选人。这一筛选过程将持续进行，直到某个候选人得到超过 50% 的选票，或所有候选人得票相同。</p>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">输入</h3>
+            <div class="bg-gray-50 p-4 rounded-md mb-6">
+                <p class="mb-3 text-sm">输入第一行包含一个正整数，代表测试数据组数。然后是一个空行，接下来是数据。每两组测试数据间用空行隔开。</p>
+                <p class="mb-3 text-sm">每组数据第一行为一个整数 n ≤ 20，代表候选人数目。接下来 n 行按顺序给出每个候选人的名字，最长 80 个字符，可以是任何可打印字符。接下来是至多 1000 行，每行描述一张选票的内容。每张选票包含 1 到 n 的某一排列。第一个为首选，第二个次选，以此类推。</p>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">输出</h3>
+            <div class="bg-gray-50 p-4 rounded-md mb-6">
+                <p class="mb-3 text-sm">对于每组数据，输出数据可能是单独一行，即胜出者的名字；或者若干行，分别包含所有平局的候选人。每两组数据间用一个空行隔开。</p>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">样例输入</h3>
+            <div class="bg-gray-100 p-3 rounded-md mb-3 font-mono text-xs leading-normal whitespace-pre">
+1
+
+3
+John Doe
+Jane Smith
+Jane Austen
+1 2 3
+2 1 3
+2 3 1
+1 2 3
+3 1 2
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">样例输出</h3>
+            <div class="bg-gray-100 p-3 rounded-md mb-6 font-mono text-xs leading-normal whitespace-pre">
+John Doe
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">解题代码</h3>
+            <div class="code-container p-4 rounded-md mb-6 font-mono text-sm">
+                <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fa fa-copy mr-1"></i>复制代码
+                </button>
+<pre class="code-pre whitespace-pre-wrap">
+<span class="code-include">#include &lt;iostream&gt;</span>
+<span class="code-include">#include &lt;vector&gt;</span>
+<span class="code-include">#include &lt;string&gt;</span>
+<span class="code-include">#include &lt;map&gt;</span>
+<span class="code-include">#include &lt;set&gt;</span>
+<span class="code-include">#include &lt;algorithm&gt;</span>
+
+<span class="code-keyword">using namespace</span> std;
+
+<span class="code-comment">//represents a single ballot with ranked preference</span>
+<span class="code-keyword">class</span> <span class="code-type">Ballot</span>
+{
+<span class="code-keyword">public</span>:
+    vector&lt;<span class="code-type">int</span>&gt; preferences;   <span class="code-comment">//candidate indices in order of preference(1-based -> 0 -based)</span>
+    <span class="code-type">int</span> currentRank;  <span class="code-comment">//the current active preference index</span>
+
+    <span class="code-type">Ballot</span>(<span class="code-keyword">const</span> vector&lt;<span class="code-type">int</span>&gt;&amp; prefs) : preferences(prefs), currentRank(<span class="code-number">0</span>) {}
+};
+
+<span class="code-comment">//run one round of preference voting</span>
+<span class="code-comment">//candidates list of candidate names</span>
+<span class="code-comment">//ballots list of all ballots</span>
+<span class="code-comment">//eliminated set of eliminated candidate indices</span>
+<span class="code-comment">//return pair of (winner index, isTie)</span>
+
+pair&lt;<span class="code-type">int</span>, <span class="code-type">bool</span>&gt; <span class="code-function">runRound</span>(<span class="code-keyword">const</span> vector&lt;string&gt;&amp; candidates, vector&lt;Ballot&gt;&amp; ballots, set&lt;<span class="code-type">int</span>&gt;&amp; eliminated)
+{
+    <span class="code-type">int</span> totalVotes = ballots.size();;
+    map&lt;<span class="code-type">int</span>, <span class="code-type">int</span>&gt; voteCount;
+
+    <span class="code-comment">//initialize vote count for active candidate</span>
+    <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; candidates.size(); i++)
+    {
+        <span class="code-keyword">if</span> (eliminated.find(i) == eliminated.end())
+        {
+            voteCount[i] = <span class="code-number">0</span>;
+        }
+    }
+
+    <span class="code-comment">//distribute votes based on current active preference</span>
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>&amp; ballot : ballots)
+    {
+        <span class="code-comment">// Find the first non-eliminated candidate in the ballot</span>
+        <span class="code-keyword">while</span> (ballot.currentRank &lt; ballot.preferences.size())
+        {
+            <span class="code-type">int</span> candidate = ballot.preferences[ballot.currentRank] - <span class="code-number">1</span>; <span class="code-comment">// Convert to 0-based</span>
+            <span class="code-keyword">if</span> (eliminated.find(candidate) == eliminated.end())
+            {
+                voteCount[candidate]++;
+                <span class="code-keyword">break</span>;
+            }
+            ballot.currentRank++;
+        }
+    }
+
+    <span class="code-comment">// Check for majority winner</span>
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>&amp; [candidate, count] : voteCount)
+    {
+        <span class="code-keyword">if</span> (count &gt; totalVotes / <span class="code-number">2</span>)
+        {
+            <span class="code-keyword">return</span> { candidate, <span class="code-keyword">false</span> };
+        }
+    }
+
+    <span class="code-comment">// Find candidates with the minimum votes</span>
+    <span class="code-type">int</span> minVotes = totalVotes;
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>&amp; [candidate, count] : voteCount)
+    {
+        <span class="code-keyword">if</span> (count &lt; minVotes)
+        {
+            minVotes = count;
+        }
+    }
+
+    <span class="code-comment">// Eliminate all candidates with minimum votes</span>
+    <span class="code-type">bool</span> allTied = <span class="code-keyword">true</span>;
+    <span class="code-type">int</span> firstCount = voteCount.begin()->second;
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>&amp; [candidate, count] : voteCount)
+    {
+        <span class="code-keyword">if</span> (count != firstCount)
+        {
+            allTied = <span class="code-keyword">false</span>;
+            <span class="code-keyword">break</span>;
+        }
+    }
+
+    <span class="code-keyword">if</span> (allTied)
+    {
+        <span class="code-keyword">return</span> { -<span class="code-number">1</span>, <span class="code-keyword">true</span> }; <span class="code-comment">// All remaining candidates are tied</span>
+    }
+
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>&amp; [candidate, count] : voteCount)
+    {
+        <span class="code-keyword">if</span> (count == minVotes)
+        {
+            eliminated.insert(candidate);
+        }
+    }
+
+    <span class="code-comment">// No winner yet, continue to next round</span>
+    <span class="code-keyword">return</span> { -<span class="code-number">1</span>, <span class="code-keyword">false</span> };
+}
+
+<span class="code-type">int</span> <span class="code-function">main</span>()
+{
+    <span class="code-type">int</span> testCases;
+    cin &gt;&gt; testCases;
+    cin.ignore(); <span class="code-comment">// Skip newline after test case count</span>
+
+    <span class="code-type">bool</span> firstCase = <span class="code-keyword">true</span>;
+
+    <span class="code-keyword">for</span> (<span class="code-type">int</span> t = <span class="code-number">0</span>; t &lt; testCases; ++t) {
+        <span class="code-comment">// Skip blank lines between test cases</span>
+        string line;
+        <span class="code-keyword">while</span> (getline(cin, line) &amp;&amp; line.empty());
+
+        <span class="code-comment">// Read number of candidates</span>
+        <span class="code-type">int</span> n = stoi(line);
+        vector&lt;string&gt; candidates(n);
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; n; ++i) {
+            getline(cin, candidates[i]);
+        }
+
+        <span class="code-comment">// Read ballots</span>
+        vector&lt;Ballot&gt; ballots;
+        <span class="code-keyword">while</span> (getline(cin, line) &amp;&amp; !line.empty()) {
+            vector&lt;<span class="code-type">int</span>&gt; prefs;
+            <span class="code-type">size_t</span> pos = <span class="code-number">0</span>;
+            <span class="code-keyword">while</span> (pos &lt; line.size()) {
+                <span class="code-type">int</span> pref = stoi(line.substr(pos));
+                prefs.push_back(pref);
+                pos = line.find(<span class="code-string">' '</span>, pos);
+                <span class="code-keyword">if</span> (pos == string::npos) <span class="code-keyword">break</span>;
+                pos++;
+            }
+            ballots.emplace_back(prefs);
+        }
+
+        <span class="code-comment">// Run preference voting</span>
+        set&lt;<span class="code-type">int</span>&gt; eliminated;
+        <span class="code-type">int</span> winner = -<span class="code-number">1</span>;
+        <span class="code-type">bool</span> isTie = <span class="code-keyword">false</span>;
+
+        <span class="code-keyword">while</span> (eliminated.size() &lt; n - <span class="code-number">1</span>) {
+            <span class="code-keyword">auto</span> [result, tie] = <span class="code-function">runRound</span>(candidates, ballots, eliminated);
+            <span class="code-keyword">if</span> (result != -<span class="code-number">1</span>) {
+                winner = result;
+                <span class="code-keyword">break</span>;
+            }
+            <span class="code-keyword">if</span> (tie) {
+                isTie = <span class="code-keyword">true</span>;
+                <span class="code-keyword">break</span>;
+            }
+        }
+
+
+        <span class="code-comment">// Output result</span>
+        <span class="code-keyword">if</span> (!firstCase) {
+            cout &lt;&lt; endl;
+        }
+        firstCase = <span class="code-keyword">false</span>;
+
+        <span class="code-keyword">if</span> (isTie || winner == -<span class="code-number">1</span>) {
+            <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; candidates.size(); ++i) {
+                <span class="code-keyword">if</span> (eliminated.find(i) == eliminated.end()) {
+                    cout &lt;&lt; candidates[i] &lt;&lt; endl;
+                }
+            }
+        }
+        <span class="code-keyword">else</span> {
+            cout &lt;&lt; candidates[winner] &lt;&lt; endl;
+        }
+    }
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}
+
+<span class="code-comment">/*
+
+*
+1
+
+3
+John Doe
+Jane Smith
+Jane Austen
+1 2 3
+2 1 3
+2 3 1
+1 2 3
+3 1 2
+
+ */</span>
+</pre>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">代码说明</h3>
+            <div class="bg-gray-50 p-4 rounded-md">
+                <p class="mb-2 text-sm">1. <strong>选票类设计</strong>：通过 <code class="bg-gray-100 px-1 rounded">Ballot</code> 类封装每张选票的偏好顺序和当前有效偏好索引，方便在多轮投票中动态调整有效选项。</p>
+                <p class="mb-2 text-sm">2. <strong>单轮投票逻辑</strong>：<code class="bg-gray-100 px-1 rounded">runRound</code> 函数负责一轮投票：</p>
+                <ul class="mb-2 text-sm">
+                    <li>统计所有有效选票对未出局候选人的支持数；</li>
+                    <li>若有候选人得票超过半数，直接返回胜者；</li>
+                    <li>若所有候选人得票相同，返回平局标记；</li>
+                    <li>否则淘汰所有得票最低的候选人，进入下一轮。</li>
+                </ul>
+                <p class="mb-2 text-sm">3. <strong>输入处理</strong>：主函数逐行读取候选人信息和选票，跳过空行，严格贴合题目输入格式。</p>
+                <p class="mb-2 text-sm">4. <strong>多轮投票循环</strong>：通过循环调用 <code class="bg-gray-100 px-1 rounded">runRound</code>，直到产生胜者或所有候选人平局。</p>
+                <p class="mb-2 text-sm">5. <strong>输出控制</strong>：通过 <code class="bg-gray-100 px-1 rounded">firstCase</code> 标记控制测试用例之间的空行，按题目要求输出胜者或所有平局候选人。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主内容区新增：将军问题题解（粘贴到main标签内最后一个题目section下方） -->
+<section id="check-the-check-content" class="content-section max-w-4xl mx-auto hidden">
+    <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <h2 class="text-2xl font-bold text-primary mb-4">将军 (Check the Check)</h2>
+        <p class="text-sm text-gray-600 mb-4">PC/UVa 题号: 110107/10196</p>
+        
+        <div class="prose prose-sm max-w-none">
+            <p class="mb-4 text-sm">你的任务是写一个程序，读入一个国际象棋棋局并且判断棋盘上的王是否被攻击(被将军)。如果王所处的位置能在一步之内被对手占领，我们称这个王被“将军”了。</p>
+
+            <p class="mb-4 text-sm">大写字母代表白子，小写字母代表黑子。白方总是位于棋盘下部，而黑方总是位于棋盘上部。</p>
+
+            <p class="mb-3 text-sm">如果你不熟悉国际象棋，下面是不同棋子的走子方式：</p>
+            <ul class="mb-4 text-sm">
+                <li>卒 (p 或 P)：笔直向前移动，一次一格。但在吃子时，只能吃掉斜前方一格的棋子。在这个问题中你只用考虑吃子的情况。</li>
+                <li>马 (n 或 N)：像中国象棋的马一样走“日”字形。只有马可以越过其他棋子 (没有中国象棋中蹩腿的规则)。</li>
+                <li>象 (b 或 B)：可以沿对角线向前、向后走任意格。</li>
+                <li>车 (r 或 R)：可以沿水平或竖直线向前、向后走任意格。</li>
+                <li>后 (q 或 Q)：可以沿水平、竖直线或者对角线向任意方向走任意格。</li>
+                <li>王 (k 或 K)：可以沿水平、竖直线或者对角线向任意方向走一格。</li>
+            </ul>
+            <p class="mb-3 text-sm">各种棋子移动方法如下图所示，“*”代表棋子一步之内可以占领的格子。</p>
+            <div class="grid grid-cols-6 gap-4 mb-4 text-xs">
+                <div>
+                    <p class="font-semibold mb-1">卒</p>
+                    <pre>........
+........
+........
+........
+...p....
+..*.*...
+........
+........</pre>
+                </div>
+                <div>
+                    <p class="font-semibold mb-1">车</p>
+                    <pre>........
+...*....
+...*....
+...*....
+...*....
+****r****
+...*....
+...*....
+...*....</pre>
+                </div>
+                <div>
+                    <p class="font-semibold mb-1">象</p>
+                    <pre>........
+........
+*......*
+..*..*..
+...*....
+..*..*..
+*......*
+........</pre>
+                </div>
+                <div>
+                    <p class="font-semibold mb-1">后</p>
+                    <pre>*...*...
+..*.*..
+...*....
+..*.*..
+****q****
+..*.*..
+...*....
+*...*...</pre>
+                </div>
+                <div>
+                    <p class="font-semibold mb-1">王</p>
+                    <pre>........
+........
+........
+..***...
+..*k*...
+..***...
+........
+........</pre>
+                </div>
+                <div>
+                    <p class="font-semibold mb-1">马</p>
+                    <pre>........
+........
+..*.*...
+.*...*..
+...n....
+.*...*..
+..*.*...
+........</pre>
+                </div>
+            </div>
+            <p class="mb-4 text-sm">注意只有马可以越过其他棋子。卒的移动方向取决于它属于哪一方：黑方的卒只能向下吃掉对角线方向的子，白方的卒只能向上吃掉对角线方向的子。上面的示例是黑方的卒，用小写“p”表示。</p>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">输入</h3>
+            <div class="bg-gray-50 p-4 rounded-md mb-6">
+                <p class="mb-3 text-sm">输入包含多个棋盘，每个棋盘由 8 行 8 列字母表示。“.”代表没有棋子，大小写字母按照前面的定义表示不同棋子。不会出现任何无效字符，也不会出现双方的王同时被将的情况。输入数据最后为一个仅包含“.”的空棋盘 (不需处理)，所有其他棋盘有且仅有一个黑王和一个白王。</p>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">输出</h3>
+            <div class="bg-gray-50 p-4 rounded-md mb-6">
+                <p class="mb-3 text-sm">对读入的每个棋盘，输出如下信息之一 (d 代表从 1 开始的局面编号)，分别表示白王被将军、黑王被将军和双方均未被将军：</p>
+                <p class="mb-2 text-sm">Game #d:  white king is in check.</p>
+                <p class="mb-2 text-sm">Game #d:  black king is in check.</p>
+                <p class="mb-2 text-sm">Game #d:  no king is in check.</p>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">样例输入</h3>
+            <div class="bg-gray-100 p-3 rounded-md mb-3 font-mono text-xs leading-normal whitespace-pre">
+..k.....
+PPP.PPPP
+........
+.R...B..
+........
+........
+PPPPPPPP
+K.......
+
+rnbqk.nr
+ppp..ppp
+....p...
+...p....
+.bPP....
+.....N..
+PP..PPPP
+RNBQKB.R
+
+........
+........
+........
+........
+........
+........
+........
+........
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">样例输出</h3>
+            <div class="bg-gray-100 p-3 rounded-md mb-6 font-mono text-xs leading-normal whitespace-pre">
+Game #1: black king is in check.
+Game #2: white king is in check.
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">解题代码</h3>
+            <div class="code-container p-4 rounded-md mb-6 font-mono text-sm">
+                <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fa fa-copy mr-1"></i>复制代码
+                </button>
+<pre class="code-pre whitespace-pre-wrap">
+<span class="code-include">#include &lt;iostream&gt;</span>
+<span class="code-include">#include &lt;vector&gt;</span>
+<span class="code-include">#include &lt;string&gt;</span>
+
+<span class="code-keyword">using namespace</span> std;
+
+<span class="code-comment">// Directions for 8 possible king moves</span>
+<span class="code-keyword">const int</span> kingDirs[<span class="code-number">8</span>][<span class="code-number">2</span>] = { {-<span class="code-number">1</span>, -<span class="code-number">1</span>}, {-<span class="code-number">1</span>, <span class="code-number">0</span>}, {-<span class="code-number">1</span>, <span class="code-number">1</span>},
+                            {<span class="code-number">0</span>, -<span class="code-number">1</span>},          {<span class="code-number">0</span>, <span class="code-number">1</span>},
+                            {<span class="code-number">1</span>, -<span class="code-number">1</span>},  {<span class="code-number">1</span>, <span class="code-number">0</span>}, {<span class="code-number">1</span>, <span class="code-number">1</span>} };
+
+<span class="code-comment">// Directions for 8 possible knight moves</span>
+<span class="code-keyword">const int</span> knightDirs[<span class="code-number">8</span>][<span class="code-number">2</span>] = { {-<span class="code-number">2</span>, -<span class="code-number">1</span>}, {-<span class="code-number">2</span>, <span class="code-number">1</span>}, {-<span class="code-number">1</span>, -<span class="code-number">2</span>}, {-<span class="code-number">1</span>, <span class="code-number">2</span>},
+                              {<span class="code-number">1</span>, -<span class="code-number">2</span>},  {<span class="code-number">1</span>, <span class="code-number">2</span>},  {<span class="code-number">2</span>, -<span class="code-number">1</span>},  {<span class="code-number">2</span>, <span class="code-number">1</span>} };
+
+<span class="code-comment">// Directions for bishop/queen diagonal moves</span>
+<span class="code-keyword">const int</span> diagDirs[<span class="code-number">4</span>][<span class="code-number">2</span>] = { {-<span class="code-number">1</span>, -<span class="code-number">1</span>}, {-<span class="code-number">1</span>, <span class="code-number">1</span>}, {<span class="code-number">1</span>, -<span class="code-number">1</span>}, {<span class="code-number">1</span>, <span class="code-number">1</span>} };
+
+
+<span class="code-comment">// Directions for rook/queen straight moves</span>
+<span class="code-keyword">const int</span> straightDirs[<span class="code-number">4</span>][<span class="code-number">2</span>] = { {-<span class="code-number">1</span>, <span class="code-number">0</span>}, {<span class="code-number">1</span>, <span class="code-number">0</span>}, {<span class="code-number">0</span>, -<span class="code-number">1</span>}, {<span class="code-number">0</span>, <span class="code-number">1</span>} };
+
+<span class="code-comment">/**
+ * @brief Check if a position is within the 8x8 chessboard
+ */</span>
+<span class="code-type">bool</span> <span class="code-function">isValid</span>(<span class="code-type">int</span> x, <span class="code-type">int</span> y) {
+    <span class="code-keyword">return</span> x >= <span class="code-number">0</span> && x < <span class="code-number">8</span> && y >= <span class="code-number">0</span> && y < <span class="code-number">8</span>;
+}
+
+
+<span class="code-comment">/**
+ * @brief Check if the white king is in check by any black piece
+ */</span>
+
+<span class="code-type">bool</span> <span class="code-function">isWhiteKingInCheck</span>(<span class="code-keyword">const</span> vector<string>& board, <span class="code-type">int</span> wkX, <span class="code-type">int</span> wkY) {
+    <span class="code-comment">// Check all 8 knight moves</span>
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>& dir : knightDirs) {
+        <span class="code-type">int</span> x = wkX + dir[<span class="code-number">0</span>];
+        <span class="code-type">int</span> y = wkY + dir[<span class="code-number">1</span>];
+        <span class="code-keyword">if</span> (<span class="code-function">isValid</span>(x, y) && board[x][y] == <span class="code-string">'n'</span>) {
+            <span class="code-keyword">return true</span>;
+        }
+    }
+
+    <span class="code-comment">// Check pawn attack (black pawns attack up-left/up-right)</span>
+    <span class="code-keyword">if</span> (<span class="code-function">isValid</span>(wkX - <span class="code-number">1</span>, wkY - <span class="code-number">1</span>) && board[wkX - <span class="code-number">1</span>][wkY - <span class="code-number">1</span>] == <span class="code-string">'p'</span>) <span class="code-keyword">return true</span>;
+    <span class="code-keyword">if</span> (<span class="code-function">isValid</span>(wkX - <span class="code-number">1</span>, wkY + <span class="code-number">1</span>) && board[wkX - <span class="code-number">1</span>][wkY + <span class="code-number">1</span>] == <span class="code-string">'p'</span>) <span class="code-keyword">return true</span>;
+
+    <span class="code-comment">//Check straight/rook/queen attacks</span>
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>& dir : straightDirs) {
+        <span class="code-type">int</span> x = wkX + dir[<span class="code-number">0</span>];
+        <span class="code-type">int</span> y = wkY + dir[<span class="code-number">1</span>];
+        <span class="code-keyword">while</span> (<span class="code-function">isValid</span>(x, y)) {
+            <span class="code-type">char</span> c = board[x][y];
+            <span class="code-keyword">if</span> (c != <span class="code-string">'.'</span>) {
+                <span class="code-keyword">if</span> (c == <span class="code-string">'r'</span> || c == <span class="code-string">'q'</span>) <span class="code-keyword">return true</span>;
+                <span class="code-keyword">break</span>;
+            }
+            x += dir[<span class="code-number">0</span>];
+            y += dir[<span class="code-number">1</span>];
+        }
+    }
+
+    <span class="code-comment">// Check diagonal/bishop/queen attacks</span>
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>& dir : diagDirs) {
+        <span class="code-type">int</span> x = wkX + dir[<span class="code-number">0</span>];
+        <span class="code-type">int</span> y = wkY + dir[<span class="code-number">1</span>];
+        <span class="code-keyword">while</span> (<span class="code-function">isValid</span>(x, y)) {
+            <span class="code-type">char</span> c = board[x][y];
+            <span class="code-keyword">if</span> (c != <span class="code-string">'.'</span>) {
+                <span class="code-keyword">if</span> (c == <span class="code-string">'b'</span> || c == <span class="code-string">'q'</span>) <span class="code-keyword">return true</span>;
+                <span class="code-keyword">break</span>;
+            }
+            x += dir[<span class="code-number">0</span>];
+            y += dir[<span class="code-number">1</span>];
+        }
+    }
+
+    <span class="code-comment">// Check king attack (black king adjacent)</span>
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>& dir : kingDirs) {
+        <span class="code-type">int</span> x = wkX + dir[<span class="code-number">0</span>];
+        <span class="code-type">int</span> y = wkY + dir[<span class="code-number">1</span>];
+        <span class="code-keyword">if</span> (<span class="code-function">isValid</span>(x, y) && board[x][y] == <span class="code-string">'k'</span>) {
+            <span class="code-keyword">return true</span>;
+        }
+    }
+
+    <span class="code-keyword">return false</span>;
+}
+
+
+<span class="code-comment">/**
+ * @brief Check if the black king is in check by any white piece
+ */</span>
+<span class="code-type">bool</span> <span class="code-function">isBlackKingInCheck</span>(<span class="code-keyword">const</span> vector<string>& board, <span class="code-type">int</span> bkX, <span class="code-type">int</span> bkY) {
+    <span class="code-comment">// Check all 8 knight moves</span>
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>& dir : knightDirs) {
+        <span class="code-type">int</span> x = bkX + dir[<span class="code-number">0</span>];
+        <span class="code-type">int</span> y = bkY + dir[<span class="code-number">1</span>];
+        <span class="code-keyword">if</span> (<span class="code-function">isValid</span>(x, y) && board[x][y] == <span class="code-string">'N'</span>) {
+            <span class="code-keyword">return true</span>;
+        }
+    }
+
+    <span class="code-comment">// Check pawn attack (white pawns attack down-left/down-right)</span>
+    <span class="code-keyword">if</span> (<span class="code-function">isValid</span>(bkX + <span class="code-number">1</span>, bkY - <span class="code-number">1</span>) && board[bkX + <span class="code-number">1</span>][bkY - <span class="code-number">1</span>] == <span class="code-string">'P'</span>) <span class="code-keyword">return true</span>;
+    <span class="code-keyword">if</span> (<span class="code-function">isValid</span>(bkX + <span class="code-number">1</span>, bkY + <span class="code-number">1</span>) && board[bkX + <span class="code-number">1</span>][bkY + <span class="code-number">1</span>] == <span class="code-string">'P'</span>) <span class="code-keyword">return true</span>;
+
+    <span class="code-comment">// Check straight/rook/queen attacks</span>
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>& dir : straightDirs) {
+        <span class="code-type">int</span> x = bkX + dir[<span class="code-number">0</span>];
+        <span class="code-type">int</span> y = bkY + dir[<span class="code-number">1</span>];
+        <span class="code-keyword">while</span> (<span class="code-function">isValid</span>(x, y)) {
+            <span class="code-type">char</span> c = board[x][y];
+            <span class="code-keyword">if</span> (c != <span class="code-string">'.'</span>) {
+                <span class="code-keyword">if</span> (c == <span class="code-string">'R'</span> || c == <span class="code-string">'Q'</span>) <span class="code-keyword">return true</span>;
+                <span class="code-keyword">break</span>;
+            }
+            x += dir[<span class="code-number">0</span>];
+            y += dir[<span class="code-number">1</span>];
+        }
+    }
+
+    <span class="code-comment">// Check diagonal/bishop/queen attacks</span>
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>& dir : diagDirs) {
+        <span class="code-type">int</span> x = bkX + dir[<span class="code-number">0</span>];
+        <span class="code-type">int</span> y = bkY + dir[<span class="code-number">1</span>];
+        <span class="code-keyword">while</span> (<span class="code-function">isValid</span>(x, y)) {
+            <span class="code-type">char</span> c = board[x][y];
+            <span class="code-keyword">if</span> (c != <span class="code-string">'.'</span>) {
+                <span class="code-keyword">if</span> (c == <span class="code-string">'B'</span> || c == <span class="code-string">'Q'</span>) <span class="code-keyword">return true</span>;
+                <span class="code-keyword">break</span>;
+            }
+            x += dir[<span class="code-number">0</span>];
+            y += dir[<span class="code-number">1</span>];
+        }
+    }
+
+    <span class="code-comment">// Check king attack (white king adjacent)</span>
+    <span class="code-keyword">for</span> (<span class="code-keyword">auto</span>& dir : kingDirs) {
+        <span class="code-type">int</span> x = bkX + dir[<span class="code-number">0</span>];
+        <span class="code-type">int</span> y = bkY + dir[<span class="code-number">1</span>];
+        <span class="code-keyword">if</span> (<span class="code-function">isValid</span>(x, y) && board[x][y] == <span class="code-string">'K'</span>) {
+            <span class="code-keyword">return true</span>;
+        }
+    }
+
+    <span class="code-keyword">return false</span>;
+}
+
+
+<span class="code-type">int</span> <span class="code-function">main</span>()
+{
+    <span class="code-type">int</span> gameNum = <span class="code-number">1</span>;
+
+    <span class="code-keyword">while</span> (<span class="code-keyword">true</span>) {
+        <span class="code-comment">// Read 8 lines of the chessboard</span>
+        vector<string> board(<span class="code-number">8</span>);
+        <span class="code-type">bool</span> isEmpty = <span class="code-keyword">true</span>;
+        <span class="code-type">int</span> wkX = -<span class="code-number">1</span>, wkY = -<span class="code-number">1</span>;
+        <span class="code-type">int</span> bkX = -<span class="code-number">1</span>, bkY = -<span class="code-number">1</span>;
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i < <span class="code-number">8</span>; ++i) {
+            getline(cin, board[i]);
+            <span class="code-keyword">if</span> (board[i] != <span class="code-string">"........"</span>) isEmpty = <span class="code-keyword">false</span>;
+            <span class="code-comment">// Find positions of kings</span>
+            <span class="code-keyword">for</span> (<span class="code-type">int</span> j = <span class="code-number">0</span>; j < <span class="code-number">8</span>; ++j) {
+                <span class="code-keyword">if</span> (board[i][j] == <span class="code-string">'K'</span>) { wkX = i; wkY = j; }
+                <span class="code-keyword">if</span> (board[i][j] == <span class="code-string">'k'</span>) { bkX = i; bkY = j; }
+            }
+        }
+
+        <span class="code-comment">// Exit if empty board</span>
+        <span class="code-keyword">if</span> (isEmpty) <span class="code-keyword">break</span>;
+
+        <span class="code-comment">// Skip the blank line between test cases</span>
+        string blank;
+        getline(cin, blank);
+
+        <span class="code-comment">// Check check status</span>
+        <span class="code-type">bool</span> whiteInCheck = <span class="code-function">isWhiteKingInCheck</span>(board, wkX, wkY);
+        <span class="code-type">bool</span> blackInCheck = <span class="code-function">isBlackKingInCheck</span>(board, bkX, bkY);
+
+        <span class="code-comment">// Output result</span>
+        cout << endl;
+        cout << <span class="code-string">"Game #"</span> << gameNum << <span class="code-string">": "</span>;
+        <span class="code-keyword">if</span> (whiteInCheck) {
+            cout << <span class="code-string">"white king is in check."</span> << endl;
+        }
+        <span class="code-keyword">else if</span> (blackInCheck) {
+            cout << <span class="code-string">"black king is in check."</span> << endl;
+        }
+        <span class="code-keyword">else</span> {
+            cout << <span class="code-string">"no king is in check."</span> << endl;
+        }
+
+        gameNum++;
+    }
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+
+    <span class="code-comment">/*
+    *
+    ........
+    ........
+    ........
+    ........
+    .p......
+    ..K.....
+    ........
+    ........
+
+    ........
+    ........
+    ........
+    .N......
+    ........
+    ....k...
+    ........
+    ........
+
+    ........
+    k.......
+    ........
+    ........
+    r.......
+    ........
+    ........
+    K.......
+
+    ........
+    ........
+    B.p.....
+    ........
+    ........
+    ....k...
+    ........
+    ........
+
+    ........
+    ........
+    ........
+    q.......
+    ........
+    ..K.....
+    ........
+    ........
+
+    ........
+    ........
+    ........
+    ........
+    .Kk.....
+    ........
+    ........
+    ........
+
+    ........
+    ........
+    P.......
+    R.......
+    n.......
+    ....k...
+    b.......
+    ........
+
+    K.......
+    ........
+    p.p.....
+    ........
+    ........
+    ....k...
+    n.b.r...
+    ........
+
+    ........
+    ........
+    ........
+    ........
+    ........
+    ........
+    ........
+    ........
+    */</span>
+
+}
+</pre>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">代码说明</h3>
+            <div class="bg-gray-50 p-4 rounded-md">
+                <p class="mb-2 text-sm">1. <strong>方向数组设计</strong>：通过预定义的方向数组（<code class="bg-gray-100 px-1 rounded">kingDirs</code>/<code class="bg-gray-100 px-1 rounded">knightDirs</code>/<code class="bg-gray-100 px-1 rounded">diagDirs</code>/<code class="bg-gray-100 px-1 rounded">straightDirs</code>）统一处理不同棋子的攻击方向，代码结构清晰易维护。</p>
+                <p class="mb-2 text-sm">2. <strong>有效性检查</strong>：<code class="bg-gray-100 px-1 rounded">isValid</code>函数确保所有坐标计算均在8×8棋盘范围内，避免越界访问。</p>
+                <p class="mb-2 text-sm">3. <strong>将军判断逻辑</strong>：</p>
+                <ul class="mb-2 text-sm">
+                    <li><code class="bg-gray-100 px-1 rounded">isWhiteKingInCheck</code>：遍历所有黑棋（n/p/r/q/b/k）的攻击范围，判断白王是否被攻击。</li>
+                    <li><code class="bg-gray-100 px-1 rounded">isBlackKingInCheck</code>：遍历所有白棋（N/P/R/Q/B/K）的攻击范围，判断黑王是否被攻击。</li>
+                    <li>对车/象/后等长距离棋子，通过循环扫描方向直到遇到棋子或边界，模拟其攻击逻辑。</li>
+                </ul>
+                <p class="mb-2 text-sm">4. <strong>输入处理</strong>：主函数逐行读取棋盘，定位黑白王位置，跳过空行和终止空棋盘，严格贴合题目输入格式。</p>
+                <p class="mb-2 text-sm">5. <strong>输出控制</strong>：通过<code class="bg-gray-100 px-1 rounded">gameNum</code>计数，按题目要求输出对应将军状态，格式完全匹配样例。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主内容区新增：解释器题解（粘贴到main标签内最后一个题目section下方） -->
+<section id="interpreter-content" class="content-section max-w-4xl mx-auto hidden">
+    <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <h2 class="text-2xl font-bold text-primary mb-4">解释器 (Interpreter)</h2>
+        <p class="text-sm text-gray-600 mb-4">PC/UVa 题号: 110106/10033</p>
+        
+        <div class="prose prose-sm max-w-none">
+            <p class="mb-4 text-sm">某台电脑有 10 个寄存器和 1000 个内存单元的存储器。每一个寄存器或者内存单元可以保存一个 0 到 999 的三位十进制整数。指令被编码为三位十进制数字并存储在内存单元中。编码规则如下：</p>
+
+            <div class="overflow-x-auto mb-6">
+                <table class="w-full border-collapse bg-gray-100 rounded-md">
+                    <thead>
+                        <tr class="border-b border-gray-300">
+                            <th class="px-3 py-2 text-left text-sm">指令格式</th>
+                            <th class="px-3 py-2 text-left text-sm">功能说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-300">
+                            <td class="px-3 py-2 text-sm">100</td>
+                            <td class="px-3 py-2 text-sm">表示停机</td>
+                        </tr>
+                        <tr class="border-b border-gray-300">
+                            <td class="px-3 py-2 text-sm">2dn</td>
+                            <td class="px-3 py-2 text-sm">表示将寄存器 d 的值设为 n(0 到 9)</td>
+                        </tr>
+                        <tr class="border-b border-gray-300">
+                            <td class="px-3 py-2 text-sm">3dn</td>
+                            <td class="px-3 py-2 text-sm">表示给寄存器 d 的值增加 n</td>
+                        </tr>
+                        <tr class="border-b border-gray-300">
+                            <td class="px-3 py-2 text-sm">4dn</td>
+                            <td class="px-3 py-2 text-sm">表示给寄存器 d 的值乘以 n</td>
+                        </tr>
+                        <tr class="border-b border-gray-300">
+                            <td class="px-3 py-2 text-sm">5ds</td>
+                            <td class="px-3 py-2 text-sm">表示将寄存器 s 的值拷贝到寄存器 d</td>
+                        </tr>
+                        <tr class="border-b border-gray-300">
+                            <td class="px-3 py-2 text-sm">6ds</td>
+                            <td class="px-3 py-2 text-sm">表示将寄存器 s 的值加到寄存器 d</td>
+                        </tr>
+                        <tr class="border-b border-gray-300">
+                            <td class="px-3 py-2 text-sm">7ds</td>
+                            <td class="px-3 py-2 text-sm">表示将寄存器 s 的值乘到寄存器 d</td>
+                        </tr>
+                        <tr class="border-b border-gray-300">
+                            <td class="px-3 py-2 text-sm">8da</td>
+                            <td class="px-3 py-2 text-sm">表示将地址为“寄存器 a 的值”的内存单元的值拷贝到寄存器 d</td>
+                        </tr>
+                        <tr class="border-b border-gray-300">
+                            <td class="px-3 py-2 text-sm">9sa</td>
+                            <td class="px-3 py-2 text-sm">表示将寄存器 s 的值拷贝到地址为“寄存器 a 的值”的内存单元</td>
+                        </tr>
+                        <tr>
+                            <td class="px-3 py-2 text-sm">0ds</td>
+                            <td class="px-3 py-2 text-sm">表示若寄存器 s 的值不为 0，则跳转到地址为“寄存器 d 的值”的内存单元处继续执行</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="mb-4 text-sm">所有寄存器初始值都为 000。存储器的初始值将从输入数据读入。第一条指令总是在存储器地址 0 处执行。所有运算结果都为除以 1000 后的余数。</p>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">输入</h3>
+            <div class="bg-gray-50 p-4 rounded-md mb-6">
+                <p class="mb-3 text-sm">输入第一行仅为一个正整数 n，表示测试数据组数。然后是一个空行，接下来是数据。每两组测试数据间均有一个空行。</p>
+                <p class="mb-3 text-sm">每组测试数据包含最多 1000 个三位非负整数，代表从地址 0 开始的存储器的值。未指定的其他内存单元初始化为 000。</p>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">输出</h3>
+            <div class="bg-gray-50 p-4 rounded-md mb-6">
+                <p class="mb-3 text-sm">对于每行测试数据输出一个整数：停机之前执行的总指令数 (包括停机指令本身)。假设程序总是会终止。相邻两组数据间用单个空行隔开。</p>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">样例输入</h3>
+            <div class="bg-gray-100 p-3 rounded-md mb-3 font-mono text-xs leading-normal whitespace-pre">
+1
+299
+492
+495
+399
+492
+495
+399
+283
+279
+689
+078
+100
+000
+000
+000
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">样例输出</h3>
+            <div class="bg-gray-100 p-3 rounded-md mb-6 font-mono text-xs leading-normal whitespace-pre">
+16
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">解题代码</h3>
+            <div class="code-container p-4 rounded-md mb-6 font-mono text-sm">
+                <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fa fa-copy mr-1"></i>复制代码
+                </button>
+<pre class="code-pre whitespace-pre-wrap">
+<span class="code-include">#include &lt;algorithm&gt;</span>
+<span class="code-include">#include &lt;iomanip&gt;</span>  <span class="code-comment">//for setw(), setfill()(formatting debug output)</span>
+<span class="code-include">#include &lt;iostream&gt;</span>
+<span class="code-include">#include &lt;vector&gt;</span>
+
+<span class="code-keyword">using</span> <span class="code-keyword">namespace</span>  std;
+
+<span class="code-comment">/*
+ *virtual machine interpreter for the problem simulates a computer
+ *with 10 registers and 1000 memory celles
+*/</span>
+
+<span class="code-keyword">class</span> <span class="code-type">VMInterpreter</span>
+{
+<span class="code-keyword">private</span>:
+    vector&lt;<span class="code-type">int</span>&gt; registers;  <span class="code-comment">//10 registers(0-9), initialized to 0</span>
+    vector&lt;<span class="code-type">int</span>&gt; memory;   <span class="code-comment">//1000 memory cells(0-999), initialized to 0</span>
+    <span class="code-type">int</span> pc; <span class="code-comment">//program counter(current instruction address)</span>
+    <span class="code-type">int</span> instructionCount;   <span class="code-comment">//number of instructions executed</span>
+
+    <span class="code-type">bool</span> debugMode;
+
+    <span class="code-comment">//print current VM state(registers, PC, current instruction) for debug</span>
+    <span class="code-type">void</span> <span class="code-function">printDebugState</span>(<span class="code-type">int</span> currentInstr)
+    {
+        <span class="code-keyword">if</span> (!debugMode) <span class="code-keyword">return</span>; <span class="code-comment">//skip if debug mode is disabled</span>
+
+        cout &lt;&lt; <span class="code-string">"=============== DEBUG STEP ==============="</span> &lt;&lt; endl;
+        cout &lt;&lt; <span class="code-string">"Program Counter(PC): "</span> &lt;&lt; setw(<span class="code-number">3</span>) &lt;&lt; setfill(<span class="code-string">'0'</span>) &lt;&lt; pc &lt;&lt; endl;
+        cout &lt;&lt; <span class="code-string">"Current Instruction: "</span> &lt;&lt; setw(<span class="code-number">3</span>) &lt;&lt; setfill(<span class="code-string">'0'</span>) &lt;&lt; currentInstr &lt;&lt; endl;
+        cout &lt;&lt; <span class="code-string">"Registers (0-9): "</span>;
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; <span class="code-number">10</span>; i++)
+        {
+            cout &lt;&lt; <span class="code-string">"R"</span> &lt;&lt; i &lt;&lt; <span class="code-string">"="</span> &lt;&lt; setw(<span class="code-number">3</span>) &lt;&lt; setfill(<span class="code-string">'0'</span>) &lt;&lt; registers[i] &lt;&lt; <span class="code-string">" "</span>;
+        }
+        cout &lt;&lt; endl;
+        cout &lt;&lt; <span class="code-string">"Memory (0-19): "</span>;
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; <span class="code-number">19</span>; ++i) {
+            cout &lt;&lt; <span class="code-string">"M"</span> &lt;&lt; setw(<span class="code-number">3</span>) &lt;&lt; setfill(<span class="code-string">'0'</span>) &lt;&lt; i &lt;&lt; <span class="code-string">"="</span> &lt;&lt; setw(<span class="code-number">3</span>) &lt;&lt; setfill(<span class="code-string">'0'</span>) &lt;&lt; memory[i] &lt;&lt; <span class="code-string">" "</span>;
+
+            <span class="code-keyword">if</span> ((i + <span class="code-number">1</span>) % <span class="code-number">5</span> == <span class="code-number">0</span>) cout &lt;&lt; endl;  <span class="code-comment">//line break every 5 cells for readability</span>
+        }
+
+        cout &lt;&lt; endl;
+        cout &lt;&lt; <span class="code-string">"-----------------------------------------"</span> &lt;&lt; endl;
+    }
+
+    <span class="code-comment">/*
+     *decode and execute a single 3-digit instruction
+    */</span>
+    <span class="code-type">bool</span> <span class="code-function">executeInstruction</span>(<span class="code-type">int</span> instr)
+    {
+        <span class="code-function">printDebugState</span>(instr);
+
+        instructionCount++;
+        <span class="code-type">int</span> op = instr / <span class="code-number">100</span>;   <span class="code-comment">//extract opcode(first digit)</span>
+        <span class="code-type">int</span> d = (instr / <span class="code-number">10</span>) % <span class="code-number">10</span>;  <span class="code-comment">//extract d parameter(second digit)</span>
+        <span class="code-type">int</span> n = instr % <span class="code-number">10</span>;      <span class="code-comment">//extract n parameter(third digit)</span>
+        <span class="code-type">int</span> s = n;  <span class="code-comment">//for instruction using s instead of n</span>
+
+        <span class="code-keyword">if</span> (debugMode) <span class="code-comment">// Debug: Print instruction decode result</span>
+        {
+            cout &lt;&lt; <span class="code-string">"Decode: opcode= "</span> &lt;&lt; op &lt;&lt; <span class="code-string">", d= "</span> &lt;&lt; d &lt;&lt; <span class="code-string">", n/s: "</span> &lt;&lt; n &lt;&lt; endl;
+        }
+
+        <span class="code-type">bool</span> halt = <span class="code-keyword">false</span>;
+
+        <span class="code-keyword">switch</span> (op)
+        {
+        <span class="code-keyword">case</span> <span class="code-number">1</span>:   <span class="code-comment">//100: halt</span>
+            <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: HALT (program terminates)."</span> &lt;&lt; endl;
+            halt = <span class="code-keyword">true</span>;
+            <span class="code-keyword">return</span> <span class="code-keyword">true</span>;
+
+        <span class="code-keyword">case</span> <span class="code-number">2</span>:   <span class="code-comment">//2dn: set register d to n</span>
+            <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: SET R "</span> &lt;&lt; d &lt;&lt; <span class="code-string">" = "</span> &lt;&lt; n &lt;&lt; endl;
+            registers[d] = n;
+            <span class="code-keyword">break</span>;
+
+        <span class="code-keyword">case</span> <span class="code-number">3</span>:   <span class="code-comment">//3dn: add n to register d(mod 1000)</span>
+            <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: ADD "</span> &lt;&lt; n &lt;&lt; <span class="code-string">" to R "</span> &lt;&lt; d &lt;&lt; <span class="code-string">" (mod 1000)"</span> &lt;&lt; endl;
+            registers[d] = (registers[d] + n) % <span class="code-number">1000</span>;
+            <span class="code-keyword">break</span>;
+
+        <span class="code-keyword">case</span> <span class="code-number">4</span>:   <span class="code-comment">//4dn: multiply register d by n(mod 1000)</span>
+            <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: MUL "</span> &lt;&lt; n &lt;&lt; <span class="code-string">" to R "</span> &lt;&lt; d &lt;&lt; <span class="code-string">" (mod 1000)"</span> &lt;&lt; endl;
+            registers[d] = (registers[d] * n) % <span class="code-number">1000</span>;
+            <span class="code-keyword">break</span>;
+
+        <span class="code-keyword">case</span> <span class="code-number">5</span>:   <span class="code-comment">//5ds: copy register s to d</span>
+            <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: COPY R "</span> &lt;&lt; s &lt;&lt; <span class="code-string">" to R "</span> &lt;&lt; d &lt;&lt; endl;
+            registers[d] = registers[s];
+            <span class="code-keyword">break</span>;
+
+        <span class="code-keyword">case</span> <span class="code-number">6</span>:   <span class="code-comment">//6ds: add register s to d(mod 1000)</span>
+            <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: ADD R "</span> &lt;&lt; s &lt;&lt; <span class="code-string">" to R "</span> &lt;&lt; d &lt;&lt; <span class="code-string">" (mod 1000)"</span> &lt;&lt; endl;
+            registers[d] = (registers[d] + registers[s]) % <span class="code-number">1000</span>;
+            <span class="code-keyword">break</span>;
+
+        <span class="code-keyword">case</span> <span class="code-number">7</span>:  <span class="code-comment">//7ds: multiply register d by s(mod 1000)</span>
+            <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: MUL R "</span> &lt;&lt; s &lt;&lt; <span class="code-string">" to R "</span> &lt;&lt; d &lt;&lt; <span class="code-string">" (mod 1000)"</span> &lt;&lt; endl;
+            registers[d] = (registers[d] * registers[s]) % <span class="code-number">1000</span>;
+            <span class="code-keyword">break</span>;
+
+        <span class="code-keyword">case</span> <span class="code-number">8</span>:  <span class="code-comment">//8da: load from memory[reg[a]] to d</span>
+            <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: LOAD M[R "</span> &lt;&lt; n &lt;&lt; <span class="code-string">" ] ("</span> &lt;&lt; memory[registers[n]] &lt;&lt; <span class="code-string">") to R "</span> &lt;&lt; d &lt;&lt; endl;
+            registers[d] = memory[registers[n]];
+            <span class="code-keyword">break</span>;
+
+        <span class="code-keyword">case</span> <span class="code-number">9</span>: <span class="code-comment">//9sa: store register s to memory[reg[a]]</span>
+            <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: STORE R "</span> &lt;&lt; s &lt;&lt; <span class="code-string">" ("</span> &lt;&lt; registers[s] &lt;&lt; <span class="code-string">") to M[R "</span> &lt;&lt; n &lt;&lt; <span class="code-string">" ]"</span> &lt;&lt; endl;
+            memory[registers[n]] = registers[s];
+            <span class="code-keyword">break</span>;
+
+        <span class="code-keyword">case</span> <span class="code-number">0</span>: <span class="code-comment">//0ds: jump to memory[reg[d]] if reg[s] != 0</span>
+            <span class="code-keyword">if</span> (registers[s] != <span class="code-number">0</span>)
+            {
+                <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: JUMP to M[R "</span> &lt;&lt; d &lt;&lt; <span class="code-string">" ] ("</span> &lt;&lt; registers[d] &lt;&lt; <span class="code-string">") (R "</span> &lt;&lt; s &lt;&lt; <span class="code-string">" != 0)"</span> &lt;&lt; endl;
+                pc = registers[d] - <span class="code-number">1</span>; <span class="code-comment">//adjust for pc increment after execute</span>
+            }
+            <span class="code-keyword">else</span>
+            {
+                <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: JUMP skipped (R "</span> &lt;&lt; s &lt;&lt; <span class="code-string">" == 0)"</span> &lt;&lt; endl;
+            }
+            <span class="code-keyword">break</span>;
+
+        <span class="code-keyword">default</span>:
+            <span class="code-comment">//invalid opcode, do nothing</span>
+            <span class="code-keyword">if</span> (debugMode) cout &lt;&lt; <span class="code-string">"Executing: INVALID OPCODE ("</span> &lt;&lt; op &lt;&lt; <span class="code-string">") - do nothing"</span> &lt;&lt; endl;
+            <span class="code-keyword">break</span>;
+        }
+
+        <span class="code-comment">// Print instruction count after execution</span>
+        <span class="code-keyword">if</span> (debugMode) {
+            cout &lt;&lt; <span class="code-string">"Instruction Count so far: "</span> &lt;&lt; instructionCount &lt;&lt; endl;
+            cout &lt;&lt; <span class="code-string">"============================================"</span> &lt;&lt; endl &lt;&lt; endl;
+        }
+        <span class="code-keyword">return</span> halt;
+    }
+
+<span class="code-keyword">public</span>:
+    <span class="code-type">VMInterpreter</span>(<span class="code-type">bool</span> debug = <span class="code-keyword">true</span>) : registers(<span class="code-number">10</span>, <span class="code-number">0</span>),
+        memory(<span class="code-number">1000</span>, <span class="code-number">0</span>), pc(<span class="code-number">0</span>), instructionCount(<span class="code-number">0</span>), debugMode(debug) {
+    }
+
+    <span class="code-type">bool</span> <span class="code-function">isDebugModeEnabled</span>() <span class="code-keyword">const</span> {
+        <span class="code-keyword">return</span> debugMode;
+    }
+
+    <span class="code-comment">//load initial memory data into the VM</span>
+    <span class="code-type">void</span> <span class="code-function">loadMemory</span>(<span class="code-keyword">const</span> vector&lt;<span class="code-type">int</span>&gt;&amp; data)
+    {
+        fill(registers.begin(), registers.end(), <span class="code-number">0</span>);
+        fill(memory.begin(), memory.end(), <span class="code-number">0</span>);
+        pc = <span class="code-number">0</span>;
+        instructionCount = <span class="code-number">0</span>;
+
+        <span class="code-comment">//load input data into memory</span>
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; data.size(); i++)
+        {
+            memory[i] = data[i];
+        }
+
+        <span class="code-keyword">if</span> (debugMode) {
+            cout &lt;&lt; <span class="code-string">"================= INIT LOAD ================"</span> &lt;&lt; endl;
+            cout &lt;&lt; <span class="code-string">"Loaded "</span> &lt;&lt; data.size() &lt;&lt; <span class="code-string">" instructions into memory (address 0 to "</span> &lt;&lt; data.size() - <span class="code-number">1</span> &lt;&lt; <span class="code-string">")"</span> &lt;&lt; endl;
+            cout &lt;&lt; <span class="code-string">"Initial Memory (0 to "</span> &lt;&lt; min(<span class="code-number">19</span>, (<span class="code-type">int</span>)data.size() - <span class="code-number">1</span>) &lt;&lt; <span class="code-string">"): "</span>;
+            <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; min(<span class="code-number">20</span>, (<span class="code-type">int</span>)data.size()); ++i) {
+                cout &lt;&lt; <span class="code-string">"M"</span> &lt;&lt; setw(<span class="code-number">3</span>) &lt;&lt; setfill(<span class="code-string">'0'</span>) &lt;&lt; i &lt;&lt; <span class="code-string">"="</span> &lt;&lt; setw(<span class="code-number">3</span>) &lt;&lt; setfill(<span class="code-string">'0'</span>) &lt;&lt; memory[i] &lt;&lt; <span class="code-string">" "</span>;
+                <span class="code-keyword">if</span> ((i + <span class="code-number">1</span>) % <span class="code-number">5</span> == <span class="code-number">0</span>) cout &lt;&lt; endl;
+            }
+            cout &lt;&lt; endl;
+            cout &lt;&lt; <span class="code-string">"============================================"</span> &lt;&lt; endl &lt;&lt; endl;
+        }
+    }
+
+    <span class="code-comment">//run the VM until halt instruction is executed</span>
+    <span class="code-comment">//return number of instructions executed(including halt)</span>
+    <span class="code-type">int</span> <span class="code-function">run</span>()
+    {
+        <span class="code-keyword">if</span> (debugMode) {
+            cout &lt;&lt; <span class="code-string">"================ START RUN ================"</span> &lt;&lt; endl;
+            cout &lt;&lt; <span class="code-string">"VM starts executing from address 0"</span> &lt;&lt; endl;
+            cout &lt;&lt; <span class="code-string">"==========================================="</span> &lt;&lt; endl &lt;&lt; endl;
+        }
+
+        <span class="code-keyword">while</span> (<span class="code-keyword">true</span>)
+        {
+            <span class="code-type">int</span> instr = memory[pc];;
+            pc++;
+            <span class="code-keyword">if</span> (<span class="code-function">executeInstruction</span>(instr))
+            {
+                <span class="code-keyword">break</span>;
+            }
+        }
+
+        <span class="code-comment">// Debug: Print final result</span>
+        <span class="code-keyword">if</span> (debugMode) {
+            cout &lt;&lt; <span class="code-string">"================  FINISH RUN ================ "</span> &lt;&lt; endl;
+            cout &lt;&lt; <span class="code-string">"Program halted (opcode 100 detected)"</span> &lt;&lt; endl;
+            cout &lt;&lt; <span class="code-string">"Total Instructions Executed: "</span> &lt;&lt; instructionCount &lt;&lt; endl;
+            cout &lt;&lt; <span class="code-string">"Final Registers (0-9): "</span>;
+            <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; <span class="code-number">10</span>; ++i) {
+                cout &lt;&lt; <span class="code-string">"R"</span> &lt;&lt; i &lt;&lt; <span class="code-string">"="</span> &lt;&lt; setw(<span class="code-number">3</span>) &lt;&lt; setfill(<span class="code-string">'0'</span>) &lt;&lt; registers[i] &lt;&lt; <span class="code-string">" "</span>;
+            }
+            cout &lt;&lt; endl;
+            cout &lt;&lt; <span class="code-string">"==============================================="</span> &lt;&lt; endl &lt;&lt; endl;
+        }
+        <span class="code-keyword">return</span> instructionCount;
+    }
+
+    <span class="code-comment">/**
+       * @brief Enable or disable debug mode dynamically
+       * @param debug true = enable, false = disable
+       */</span>
+    <span class="code-type">void</span> <span class="code-function">setDebugMode</span>(<span class="code-type">bool</span> debug) {
+        debugMode = debug;
+    }
+};
+
+<span class="code-type">int</span> <span class="code-function">main</span>()
+{
+    <span class="code-type">int</span> n;
+    cin &gt;&gt; n;
+    cin.ignore(); <span class="code-comment">//skip newline after n</span>
+
+    <span class="code-type">bool</span> firstCase = <span class="code-keyword">true</span>;
+
+    <span class="code-keyword">for</span> (<span class="code-type">int</span> caseNum = <span class="code-number">0</span>; caseNum &lt; n; ++caseNum) {
+        <span class="code-comment">// Skip blank lines between test cases</span>
+        string line;
+        <span class="code-keyword">while</span> (getline(cin, line) &amp;&amp; line.empty());
+
+        vector&lt;<span class="code-type">int</span>&gt; memoryData;
+        <span class="code-comment">// Read all 3-digit numbers for this test case</span>
+        <span class="code-keyword">do</span> {
+            <span class="code-keyword">if</span> (!line.empty()) {
+                memoryData.push_back(stoi(line));
+            }
+        } <span class="code-keyword">while</span> (getline(cin, line) &amp;&amp; !line.empty());
+
+        <span class="code-comment">// Run the VM</span>
+        VMInterpreter vm;
+
+        <span class="code-comment">// Run the VM</span>
+        <span class="code-keyword">if</span> (firstCase &amp;&amp; vm.isDebugModeEnabled()) {
+            cout &lt;&lt; <span class="code-string">"================ TEST CASE "</span> &lt;&lt; caseNum + <span class="code-number">1</span> &lt;&lt; <span class="code-string">" ================"</span> &lt;&lt; endl &lt;&lt; endl;
+        }
+        <span class="code-keyword">else</span> <span class="code-keyword">if</span> (vm.isDebugModeEnabled()) {
+            cout &lt;&lt; <span class="code-string">"================ TEST CASE "</span> &lt;&lt; caseNum + <span class="code-number">1</span> &lt;&lt; <span class="code-string">" ================"</span> &lt;&lt; endl &lt;&lt; endl;
+        }
+
+        vm.loadMemory(memoryData);
+        <span class="code-type">int</span> result = vm.run();
+
+        <span class="code-comment">// Output result with blank line between cases</span>
+        <span class="code-keyword">if</span> (!firstCase) {
+            cout &lt;&lt; endl;
+        }
+        firstCase = <span class="code-keyword">false</span>;
+
+        cout &lt;&lt; <span class="code-string">"================ FINAL RESULT (TEST CASE "</span> &lt;&lt; caseNum + <span class="code-number">1</span> &lt;&lt; <span class="code-string">") ================"</span> &lt;&lt; endl;
+        cout &lt;&lt; <span class="code-string">"Total Instructions Executed: "</span> &lt;&lt; result &lt;&lt; endl;
+        cout &lt;&lt; <span class="code-string">"================================================"</span> &lt;&lt; endl &lt;&lt; endl;
+    }
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}
+</pre>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">代码说明</h3>
+            <div class="bg-gray-50 p-4 rounded-md">
+                <p class="mb-2 text-sm">1. <strong>类封装设计</strong>：通过<code class="bg-gray-100 px-1 rounded">VMInterpreter</code>类封装虚拟机的核心状态（寄存器、内存、程序计数器、指令数）和行为（指令执行、内存加载、运行），实现数据与逻辑的解耦，支持多测试用例独立运行；</p>
+                <p class="mb-2 text-sm">2. <strong>调试模式支持</strong>：内置<code class="bg-gray-100 px-1 rounded">debugMode</code>开关，开启后可打印每步执行的寄存器、内存、PC状态，方便调试，可通过<code class="bg-gray-100 px-1 rounded">setDebugMode</code>动态开关；</p>
+                <p class="mb-2 text-sm">3. <strong>指令解析</strong>：通过取整/取模从3位指令中提取操作码（op）和参数（d/n/s/a），按题目要求映射到对应逻辑，所有运算结果严格对1000取模；</p>
+                <p class="mb-2 text-sm">4. <strong>跳转指令处理</strong>：0ds指令中若寄存器s非0，将PC设为寄存器d的值并<strong>减1</strong>，抵消执行后PC的自增操作，保证跳转地址精准；</p>
+                <p class="mb-2 text-sm">5. <strong>内存与寄存器初始化</strong>：每次加载测试用例时，通过<code class="bg-gray-100 px-1 rounded">std::fill</code>将寄存器和内存重置为0，避免测试用例之间的状态污染；</p>
+                <p class="mb-2 text-sm">6. <strong>输入处理</strong>：主函数中跳过测试用例之间的空行，将每行3位指令转为整数存入内存，严格贴合题目输入格式要求；</p>
+                <p class="mb-2 text-sm">7. <strong>输出格式</strong>：通过<code class="bg-gray-100 px-1 rounded">firstCase</code>标记控制测试用例之间的空行，严格遵循题目“首用例前无空行、尾用例后无空行”的要求；</p>
+                <p class="mb-2 text-sm">8. <strong>鲁棒性设计</strong>：处理无效操作码时无操作，内存/寄存器访问均在合法范围内，无需处理越界情况，贴合题目输入保证。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主内容区新增：画布编辑器题解（粘贴到main标签内最后一个题目section下方） -->
+<section id="canvas-content" class="content-section max-w-4xl mx-auto hidden">
+    <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <h2 class="text-2xl font-bold text-primary mb-4">图形化编辑器 (Graphical Editor)</h2>
+        <p class="text-sm text-gray-600 mb-4">PC/UVa 题号: 110105/10267</p>
+        
+        <div class="prose prose-sm max-w-none">
+            <p class="mb-4 text-sm">正如文本编辑器允许我们修改文本一样，Photoshop 这样的图形化编辑器允许我们修改位图图像。在本题中，图像被表示成一个 M × N 的像素数组，每个像素有一种颜色。你的任务是编写一个程序，模拟一个简单的交互式图形化编辑器。</p>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">输入</h3>
+            <div class="bg-gray-50 p-4 rounded-md mb-6">
+                <p class="mb-3 text-sm">输入包括一个指令序列，每条指令占单独的一行。每行的第一个字符总是大写字母，代表这条指令的类型。如果该指令需要参数，将会在同一行中陆续给出，用空格隔开。</p>
+                <p class="mb-3 text-sm">像素坐标用列号和行号这两个整数表示，列号在 1 到 M 范围内，行号在 1 到 N 范围内 (1 ≤ M,N ≤ 250)。坐标原点在左上角。颜色用大写字母表示。</p>
+                <p class="mb-3 text-sm">编辑器接受以下命令：</p>
+
+                <div class="overflow-x-auto mt-4">
+                    <table class="w-full border-collapse bg-gray-100 rounded-md">
+                        <thead>
+                            <tr class="border-b border-gray-300">
+                                <th class="px-3 py-2 text-left text-sm">命令格式</th>
+                                <th class="px-3 py-2 text-left text-sm">功能说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-3 py-2 text-sm">I M N</td>
+                                <td class="px-3 py-2 text-sm">创建一个新的 M × N 图像，所有像素为白色 (0)。</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-3 py-2 text-sm">C</td>
+                                <td class="px-3 py-2 text-sm">清除图像，把所有像素涂成白色 (0)，图像大小不变。</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-3 py-2 text-sm">L X Y C</td>
+                                <td class="px-3 py-2 text-sm">把像素 (X,Y) 涂成颜色 (C)。</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-3 py-2 text-sm">V X Y1 Y2 C</td>
+                                <td class="px-3 py-2 text-sm">画一条竖直线段，颜色为 (C)，列号为 X，从第 Y1 行到第 Y2 行 (包括 Y1 和 Y2 行)。</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-3 py-2 text-sm">H X1 X2 Y C</td>
+                                <td class="px-3 py-2 text-sm">画一条水平线段，颜色为 (C)，行号为 Y，从第 X1 列到第 X2 列 (包括 X1 和 X2 列)。</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-3 py-2 text-sm">K X1 Y1 X2 Y2 C</td>
+                                <td class="px-3 py-2 text-sm">画一个实心矩形，颜色为 (C)，左上角为 (X1,Y1)，右下角为 (X2,Y2)。</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-3 py-2 text-sm">F X Y C</td>
+                                <td class="px-3 py-2 text-sm">把区域 R 填充为颜色 (C)。R 定义如下：若像素 (X,Y) 属于 R，则所有与 (X,Y) 有公共边且颜色相同的像素也属于 R。</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-3 py-2 text-sm">S NAME</td>
+                                <td class="px-3 py-2 text-sm">原样输出文件名以及整幅图像的像素矩阵。</td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-2 text-sm">X</td>
+                                <td class="px-3 py-2 text-sm">退出程序。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">输出</h3>
+            <div class="bg-gray-50 p-4 rounded-md mb-6">
+                <p class="mb-3 text-sm">对于每条S NAME指令，原样输出文件名NAME和当前图像的内容。输出的每一行表示图像每一行中各个像素的颜色，参见样例输出。</p>
+                <p class="mb-3 text-sm">如果指令的第一个字符不是I、C、L、V、H、K、F、S、X之一，忽略此命令，直接跳到下一行输入进行处理。</p>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">样例输入</h3>
+            <div class="bg-gray-100 p-3 rounded-md mb-3 font-mono text-xs leading-normal whitespace-pre">
+I 5 6
+L 2 3 A
+S one.bmp
+G 2 3 J
+F 3 3 J
+V 2 3 4 W
+H 3 4 2 Z
+S two.bmp
+X
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">样例输出</h3>
+            <div class="bg-gray-100 p-3 rounded-md mb-3 font-mono text-xs leading-normal whitespace-pre">
+one.bmp
+00000
+00000
+0A000
+00000
+00000
+00000
+two.bmp
+JJJJJ
+JJZZJ
+JWJJJ
+JWJJJ
+JJJJJ
+JJJJJ
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">解题代码</h3>
+            <div class="code-container p-4 rounded-md mb-6 font-mono text-sm">
+                <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fa fa-copy mr-1"></i>复制代码
+                </button>
+<pre class="code-pre whitespace-pre-wrap">
+<span class="code-include">#include &lt;iostream&gt;</span>
+<span class="code-include">#include &lt;vector&gt;</span>
+<span class="code-include">#include &lt;algorithm&gt;</span>
+<span class="code-include">#include &lt;string&gt;</span>
+
+<span class="code-keyword">using</span> <span class="code-keyword">namespace</span>  std;
+
+<span class="code-comment">/*
+ * CanvasEditor class encapsulates all functionalities of a simple graphic editor
+ * Manages canvas state and provides methods for  drawing , filling and output
+ *
+ */</span>
+
+<span class="code-keyword">class</span> <span class="code-type">CanvasEditor</span>
+{
+<span class="code-keyword">private</span>:
+    vector&lt;vector&lt;char&gt;&gt; canvas;  <span class="code-comment">//2d vector to store pixel data of the canvas</span>
+    <span class="code-type">int</span> cols;
+    <span class="code-type">int</span> rows;;
+
+    <span class="code-type">void</span> <span class="code-function">floodFillHelper</span>(<span class="code-type">int</span> x, <span class="code-type">int</span> y, <span class="code-type">char</span> target, <span class="code-type">char</span> color)
+    {
+        <span class="code-comment">//convert 1-based coordinates to 0-based for vector access</span>
+        <span class="code-type">int</span> cx = x - <span class="code-number">1</span>;
+        <span class="code-type">int</span> cy = y - <span class="code-number">1</span>;;
+
+        <span class="code-comment">//boundary check: if coordinates are out of canvas range, return</span>
+        <span class="code-keyword">if</span> (cx &lt; <span class="code-number">0</span> || cx &gt;= cols || cy &lt; <span class="code-number">0</span> || cy &gt;= rows)
+        {
+            <span class="code-keyword">return</span>;
+        }
+
+        <span class="code-keyword">if</span> (canvas[cy][cx] != target)
+        {
+            <span class="code-keyword">return</span>;
+        }
+
+        <span class="code-comment">//fill current pixel with new color</span>
+        canvas[cy][cx] = color;
+
+        <span class="code-comment">//recursively fill 4 adjacent directions(right, left, down, up)</span>
+        floodFillHelper(x + <span class="code-number">1</span>, y, target, color); <span class="code-comment">//right</span>
+        floodFillHelper(x - <span class="code-number">1</span>, y, target, color); <span class="code-comment">//left</span>
+        floodFillHelper(x, y + <span class="code-number">1</span>, target, color); <span class="code-comment">//down</span>
+        floodFillHelper(x, y - <span class="code-number">1</span>, target, color); <span class="code-comment">//up</span>
+    }
+
+<span class="code-keyword">public</span>:
+    <span class="code-type">CanvasEditor</span>() : cols(<span class="code-number">0</span>), rows(<span class="code-number">0</span>) {};
+
+    <span class="code-type">void</span> <span class="code-function">createCanvas</span>(<span class="code-type">int</span> M, <span class="code-type">int</span> N)
+    {
+        cols = M;
+        rows = N;
+        canvas.assign(rows, vector&lt;char&gt;(cols, <span class="code-string">'0'</span>));
+    }
+
+    <span class="code-type">void</span> <span class="code-function">clearCanvas</span>()
+    {
+        <span class="code-keyword">if</span> (canvas.empty())
+        {
+            <span class="code-keyword">return</span>;
+        }
+
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; rows; ++i)
+        {
+            fill(canvas[i].begin(), canvas[i].end(), <span class="code-string">'0'</span>);
+        }
+    }
+
+    <span class="code-type">void</span> <span class="code-function">drawPixel</span>(<span class="code-type">int</span> X, <span class="code-type">int</span> Y, <span class="code-type">char</span> C)
+    {
+        <span class="code-keyword">if</span> (X &lt; <span class="code-number">1</span> || X &gt; cols || Y &lt; <span class="code-number">1</span> || Y &gt; rows)
+        {
+            <span class="code-keyword">return</span>;
+        }
+
+        canvas[Y - <span class="code-number">1</span>][X - <span class="code-number">1</span>] = C;
+    }
+
+    <span class="code-type">void</span> <span class="code-function">drawVerticalLine</span>(<span class="code-type">int</span> X, <span class="code-type">int</span> Y1, <span class="code-type">int</span> Y2, <span class="code-type">char</span> C)
+    {
+        <span class="code-keyword">if</span> (X &lt; <span class="code-number">1</span> || X &gt; cols)
+            <span class="code-keyword">return</span>;
+
+        <span class="code-keyword">if</span> (Y1 &gt; Y2)
+            swap(Y1, Y2);
+
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> y = Y1; y &lt;= Y2; ++y)
+        {
+            canvas[y - <span class="code-number">1</span>][X - <span class="code-number">1</span>] = C;
+        }
+    }
+
+    <span class="code-type">void</span> <span class="code-function">drawHorizontalLine</span>(<span class="code-type">int</span> X1, <span class="code-type">int</span> X2, <span class="code-type">int</span> Y, <span class="code-type">char</span> C)
+    {
+        <span class="code-keyword">if</span> (Y &lt; <span class="code-number">1</span> || Y &gt; rows)
+            <span class="code-keyword">return</span>;
+
+        <span class="code-keyword">if</span> (X1 &gt; X2)
+            swap(X1, X2);
+
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> x = X1; x &lt;= X2; ++x)
+        {
+            canvas[Y - <span class="code-number">1</span>][x - <span class="code-number">1</span>] = C;
+        }
+    }
+
+    <span class="code-type">void</span> <span class="code-function">drawRectangle</span>(<span class="code-type">int</span> X1, <span class="code-type">int</span> Y1, <span class="code-type">int</span> X2, <span class="code-type">int</span> Y2, <span class="code-type">char</span> C)
+    {
+        <span class="code-keyword">if</span> (X1 &gt; X2)
+            swap(X1, X2);
+
+        <span class="code-keyword">if</span> (Y1 &gt; Y2)
+            swap(Y1, Y2);
+
+        <span class="code-keyword">if</span> (X1 &lt; <span class="code-number">1</span> || X2 &gt; cols || Y1 &lt; <span class="code-number">1</span> || Y2 &gt; rows)
+        {
+            <span class="code-keyword">return</span>;
+        }
+
+        <span class="code-comment">//fill all pixels in the rectangle area</span>
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> y = Y1; y &lt;= Y2; ++y)
+        {
+            <span class="code-keyword">for</span> (<span class="code-type">int</span> x = X1; x &lt;= X2; ++x)
+            {
+                canvas[y - <span class="code-number">1</span>][x - <span class="code-number">1</span>] = C;
+            }
+        }
+    }
+
+    <span class="code-type">void</span> <span class="code-function">fillRegion</span>(<span class="code-type">int</span> X, <span class="code-type">int</span> Y, <span class="code-type">char</span> C)
+    {
+        <span class="code-keyword">if</span> (X &lt; <span class="code-number">1</span> || X &gt; cols || Y &lt; <span class="code-number">1</span> || Y &gt; rows)
+            <span class="code-keyword">return</span>;
+
+        <span class="code-type">char</span> target = canvas[Y - <span class="code-number">1</span>][X - <span class="code-number">1</span>];
+
+        <span class="code-comment">//avoid infinite recursion if target color == fill color</span>
+        <span class="code-keyword">if</span> (target != C)
+        {
+            floodFillHelper(X, Y, target, C);
+        }
+    }
+
+    <span class="code-type">void</span> <span class="code-function">printCanvas</span>(<span class="code-keyword">const</span> string&amp; name)
+    {
+        cout &lt;&lt; name &lt;&lt; endl;
+
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; rows; ++i)
+        {
+            <span class="code-keyword">for</span> (<span class="code-type">int</span> j = <span class="code-number">0</span>; j &lt; cols; ++j)
+            {
+                cout &lt;&lt; canvas[i][j];
+            }
+            cout &lt;&lt; endl;
+        }
+    }
+};
+
+<span class="code-type">int</span> <span class="code-function">main</span>()
+{
+    CanvasEditor editor;
+    <span class="code-type">char</span> cmd;
+
+    <span class="code-keyword">while</span> (cin &gt;&gt; cmd)
+    {
+        <span class="code-keyword">switch</span> (cmd)
+        {
+        <span class="code-keyword">case</span> <span class="code-string">'I'</span>:
+        {
+            <span class="code-type">int</span> M, N;
+            cin &gt;&gt; M &gt;&gt; N;
+            editor.createCanvas(M, N);
+            <span class="code-keyword">break</span>;
+        }
+
+        <span class="code-keyword">case</span> <span class="code-string">'C'</span>:
+            editor.clearCanvas();
+            <span class="code-keyword">break</span>;
+
+        <span class="code-keyword">case</span> <span class="code-string">'L'</span>:
+        {
+            <span class="code-type">int</span> X, Y;
+            <span class="code-type">char</span> C;
+            cin &gt;&gt; X &gt;&gt; Y &gt;&gt; C;
+            editor.drawPixel(X, Y, C);
+            <span class="code-keyword">break</span>;
+        }
+
+        <span class="code-keyword">case</span> <span class="code-string">'V'</span>:
+        { <span class="code-comment">// Command: Draw vertical line</span>
+            <span class="code-type">int</span> X, Y1, Y2;
+            <span class="code-type">char</span> C;
+            cin &gt;&gt; X &gt;&gt; Y1 &gt;&gt; Y2 &gt;&gt; C;
+            editor.drawVerticalLine(X, Y1, Y2, C);
+            <span class="code-keyword">break</span>;
+        }
+
+        <span class="code-keyword">case</span> <span class="code-string">'H'</span>:
+        { <span class="code-comment">// Command: Draw horizontal line</span>
+            <span class="code-type">int</span> X1, X2, Y;
+            <span class="code-type">char</span> C;
+            cin &gt;&gt; X1 &gt;&gt; X2 &gt;&gt; Y &gt;&gt; C;
+            editor.drawHorizontalLine(X1, X2, Y, C);
+            <span class="code-keyword">break</span>;
+        }
+
+        <span class="code-keyword">case</span> <span class="code-string">'K'</span>:
+        { <span class="code-comment">// Command: Draw solid rectangle</span>
+            <span class="code-type">int</span> X1, Y1, X2, Y2;
+            <span class="code-type">char</span> C;
+            cin &gt;&gt; X1 &gt;&gt; Y1 &gt;&gt; X2 &gt;&gt; Y2 &gt;&gt; C;
+            editor.drawRectangle(X1, Y1, X2, Y2, C);
+            <span class="code-keyword">break</span>;
+        }
+
+        <span class="code-keyword">case</span> <span class="code-string">'F'</span>:
+        { <span class="code-comment">// Command: Flood fill region</span>
+            <span class="code-type">int</span> X, Y;
+            <span class="code-type">char</span> C;
+            cin &gt;&gt; X &gt;&gt; Y &gt;&gt; C;
+            editor.fillRegion(X, Y, C);
+            <span class="code-keyword">break</span>;
+        }
+
+        <span class="code-keyword">case</span> <span class="code-string">'S'</span>:
+        { <span class="code-comment">// Command: Print canvas</span>
+            string name;
+            cin &gt;&gt; name;
+            editor.printCanvas(name);
+            <span class="code-keyword">break</span>;
+        }
+
+        <span class="code-keyword">case</span> <span class="code-string">'X'</span>:
+            <span class="code-keyword">return</span> <span class="code-number">0</span>;
+
+        <span class="code-keyword">default</span>:
+            cin.ignore(<span class="code-number">1024</span>, <span class="code-string">'\n'</span>);
+            <span class="code-keyword">break</span>;
+        }
+    }
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}
+</pre>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">代码说明</h3>
+            <div class="bg-gray-50 p-4 rounded-md">
+                <p class="mb-2 text-sm">1. <strong>类封装设计</strong>：通过<code class="bg-gray-100 px-1 rounded">CanvasEditor</code>类封装画布的状态（二维像素数组、行列数）和所有操作方法，实现数据与行为的解耦，符合面向对象设计思想；</p>
+                <p class="mb-2 text-sm">2. <strong>坐标转换</strong>：适配题目1-based坐标要求，所有操作中均将坐标转换为C++容器的0-based索引，同时添加边界检查，忽略无效的越界命令；</p>
+                <p class="mb-2 text-sm">3. <strong>洪水填充实现</strong>：通过私有递归函数<code class="bg-gray-100 px-1 rounded">floodFillHelper</code>实现4邻域填充，先判断像素颜色和边界，再递归填充上下左右方向，添加<code>target != C</code>判断避免无限递归；</p>
+                <p class="mb-2 text-sm">4. <strong>绘制逻辑健壮性</strong>：垂直线/水平线绘制时自动交换起止坐标，无需用户保证参数顺序；实心矩形绘制先校准坐标再双重循环填充，确保绘制结果正确；</p>
+                <p class="mb-2 text-sm">5. <strong>命令解析</strong>：主函数通过<code>switch-case</code>逐行解析输入命令，精准映射到类的对应方法，<code>default</code>分支忽略无效命令，<code>X</code>命令直接退出程序，贴合题目交互逻辑；</p>
+                <p class="mb-2 text-sm">6. <strong>画布操作优化</strong>：<code>clearCanvas</code>通过<code>std::fill</code>快速重置像素；<code>createCanvas</code>通过<code>vector::assign</code>动态初始化不同尺寸的画布，高效且灵活；</p>
+                <p class="mb-2 text-sm">7. <strong>打印格式严格</strong>：<code>printCanvas</code>按题目要求先输出画布名称，再逐行打印像素，无多余空格和换行，保证输出格式完全符合要求。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主内容区新增：液晶显示屏题解（粘贴到main标签内最后一个题目section下方） -->
+<section id="lcd-content" class="content-section max-w-4xl mx-auto hidden">
+    <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <h2 class="text-2xl font-bold text-primary mb-4">PC/UVa 110104/706 - 液晶显示屏 (LC-Display)</h2>
+        
+        <div class="prose prose-sm max-w-none">
+            <h3 class="text-lg font-semibold text-secondary mb-3">题目描述</h3>
+            <div class="bg-gray-50 p-4 rounded-md mb-6">
+                <p class="mb-3 text-sm">你的一个朋友刚买了一台新电脑，而他之前用过的最强大的设备是一个袖珍式计算器。他有点失望，因为相比电脑屏幕，他更喜欢计算器的液晶显示屏。为了让他开心，你需要编写一个程序，让电脑屏幕像计算器液晶屏一样显示数字。</p>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">输入格式</h4>
+                <p class="mb-3 text-sm">输入包含若干行，每行有两个整数 <code>s</code> 和 <code>n</code>：<code>s(1 ≤ s ≤ 10)</code> 是显示屏的尺寸，<code>n(0 ≤ n ≤ 999999)</code> 是需要显示的数字。当一行输入为两个0（<code>0 0</code>）时，输入终止，该行无需处理。</p>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">输出格式</h4>
+                <p class="mb-3 text-sm">模拟计算器液晶屏显示数字<code>n</code>，规则如下：
+                <br>1. 水平线段用<code>s</code>个<code>-</code>表示，竖直线段用<code>s</code>个<code>|</code>表示；
+                <br>2. 每个数字占用 <code>s+2</code> 列、<code>2s+3</code> 行；
+                <br>3. 数字的空白区域用空格填充，两个数字之间必须有一个空列；
+                <br>4. 每个数字的显示结果后，输出一个空行。</p>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">样例输入</h4>
+                <div class="bg-gray-100 p-3 rounded-md mb-3 font-mono text-xs leading-normal">
+                    2 12345<br>
+                    3 67890<br>
+                    0 0
+                </div>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">样例输出</h4>
+<div class="bg-gray-100 p-3 rounded-md font-mono text-xs leading-normal whitespace-pre">
+   --   --        --
+ |   |    |  | | |   
+ |   |    |  | | |   
+   --   --   --   --
+ ||       |    |    |
+ ||       |    |    |
+   --   --        --
+
+  ---  ---   ---   ---   ---
+ |        | |   | |   | |   | 
+ |        | |   | |   | |   | 
+ |        | |   | |   | |   | 
+  ---        ---   ---
+ |   |    | |   |     | |   |
+ |   |    | |   |     | |   |
+ |   |    | |   |     | |   |
+  ---        ---   ---   ---
+</div>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">解题代码</h3>
+            <div class="code-container p-4 rounded-md mb-6 font-mono text-sm">
+                <!-- 复制按钮：复用原有copyCode函数 -->
+                <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fa fa-copy mr-1"></i>复制代码
+                </button>
+<pre class="code-pre whitespace-pre-wrap">
+<span class="code-comment">// PC/UVa 110104/706 - 液晶显示屏 (LC-Display)</span>
+<span class="code-include">#include &lt;iostream&gt;</span>
+<span class="code-include">#include &lt;string&gt;</span>
+<span class="code-include">#include &lt;vector&gt;</span>
+<span class="code-include">#include &lt;span&gt;</span>
+
+<span class="code-comment">/*
+ *brief define the segment structure of each digit(0 - 9)
+ *each digit is represented by 7 segments(a-g), where:
+ *a: top horizontal, b : top-right vertical, c: bottom-right vertical,
+ *d: bottom horizontal, e : bottom-left vertical, f : top-left vertical,
+ *g: middle horizontal
+ */</span>
+<span class="code-keyword">const</span> <span class="code-type">bool</span> DIGIT_SEGMENTS[<span class="code-number">10</span>][<span class="code-number">7</span>] = {
+    {<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">0</span>},  <span class="code-comment">//0: a, b, c, d, e, f</span>
+    {<span class="code-number">0</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">0</span>,<span class="code-number">0</span>,<span class="code-number">0</span>,<span class="code-number">0</span>},  <span class="code-comment">//1: b, c</span>
+    {<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">0</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">0</span>,<span class="code-number">1</span>},  <span class="code-comment">//2: a, b, g, d, e</span>
+    {<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">0</span>,<span class="code-number">0</span>,<span class="code-number">1</span>},  <span class="code-comment">//3: a, b, g, c, d</span>
+    {<span class="code-number">0</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">0</span>,<span class="code-number">0</span>,<span class="code-number">1</span>,<span class="code-number">1</span>},  <span class="code-comment">//4: f, b, g, c</span>
+    {<span class="code-number">1</span>,<span class="code-number">0</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">0</span>,<span class="code-number">1</span>,<span class="code-number">1</span>},  <span class="code-comment">//5: a, f, g, c, d</span>
+    {<span class="code-number">1</span>,<span class="code-number">0</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>},  <span class="code-comment">//6: a, f, g, c, d, e</span>
+    {<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">0</span>,<span class="code-number">0</span>,<span class="code-number">0</span>,<span class="code-number">0</span>},  <span class="code-comment">//7: a, b, c</span>
+    {<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>},  <span class="code-comment">//8: all segments</span>
+    {<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">1</span>,<span class="code-number">0</span>,<span class="code-number">1</span>,<span class="code-number">1</span>}   <span class="code-comment">//9: a, b, g, c, d, f</span>
+};
+
+<span class="code-comment">/* generates the LCD-style representation of a single digit */</span>
+std::vector&lt;std::string&gt; <span class="code-function">generateDigit</span>(<span class="code-type">int</span> s, <span class="code-type">int</span> digit)
+{
+    <span class="code-keyword">const</span> <span class="code-type">bool</span> *seg = DIGIT_SEGMENTS[digit];
+    std::vector&lt;std::string&gt; lines(<span class="code-number">2</span> * s + <span class="code-number">3</span>);
+    <span class="code-type">int</span> cols = s + <span class="code-number">2</span>;
+
+    <span class="code-comment">//line 0 : top horizontal (segment a)</span>
+    lines[<span class="code-number">0</span>] = <span class="code-string">" "</span> + (seg[<span class="code-number">0</span>] ? std::string(s, <span class="code-string">'-'</span>) : std::string(s, <span class="code-string">' '</span>)) + <span class="code-string">" "</span>;
+    <span class="code-comment">//lines 1~s: top verticals (segments f, b)</span>
+    <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">1</span>; i <= s; ++i)
+    {
+        lines[i] = (seg[<span class="code-number">5</span>] ? <span class="code-string">"|"</span> : <span class="code-string">" "</span>) + std::string(s, <span class="code-string">' '</span>) + (seg[<span class="code-number">1</span>] ? <span class="code-string">"|"</span> : <span class="code-string">" "</span>);
+    }
+    <span class="code-comment">//line s+1: middle horizontal (segment g)</span>
+    lines[s+<span class="code-number">1</span>] = <span class="code-string">" "</span> +  (seg[<span class="code-number">6</span>] ? std::string(s, <span class="code-string">'-'</span>) : std::string(s, <span class="code-string">' '</span>)) + <span class="code-string">" "</span>;
+    <span class="code-comment">//lines s+2 ~ 2s+1: bottom verticals (segments e, c)</span>
+    <span class="code-keyword">for</span> (<span class="code-type">int</span> i = s+<span class="code-number">2</span>; i <= <span class="code-number">2</span>*s +<span class="code-number">1</span>; ++i)
+    {
+        lines[i] = (seg[<span class="code-number">4</span>] ? <span class="code-string">"|"</span> : <span class="code-string">" "</span>) + std::string(s, <span class="code-string">' '</span>) + (seg[<span class="code-number">2</span>] ? <span class="code-string">"|"</span> : <span class="code-string">" "</span>);
+    }
+    <span class="code-comment">//line 2s+2: bottom horizontal (segment d)</span>
+    lines[<span class="code-number">2</span>*s+<span class="code-number">2</span>] = <span class="code-string">" "</span> + (seg[<span class="code-number">3</span>] ? std::string(s, <span class="code-string">'-'</span>) : std::string(s, <span class="code-string">' '</span>)) + <span class="code-string">" "</span>;
+
+    <span class="code-keyword">return</span> lines;
+}
+
+<span class="code-comment">//combines multiple digit representation into a single LCD line</span>
+std::vector&lt;std::string&gt; <span class="code-function">combineDigits</span>(<span class="code-type">int</span> s, std::span&lt;<span class="code-keyword">const</span> std::vector&lt;std::string&gt;&gt; digits)
+{
+    std::vector&lt;std::string&gt; result(<span class="code-number">2</span>*s + <span class="code-number">3</span>);
+    <span class="code-keyword">for</span> (size_t line = <span class="code-number">0</span>; line < result.size(); ++line)
+    {
+        <span class="code-keyword">for</span> (size_t i = <span class="code-number">0</span>; i < digits.size(); ++i)
+        {
+            result[line] += digits[i][line];
+            <span class="code-keyword">if</span> (i != digits.size()-<span class="code-number">1</span>)
+            {
+                result[line] += <span class="code-string">" "</span>;  <span class="code-comment">//add one space between digits</span>
+            }
+        }
+    }
+    <span class="code-keyword">return</span> result;
+}
+
+<span class="code-type">int</span> <span class="code-function">main</span>()
+{
+    std::ios::sync_with_stdio(<span class="code-keyword">false</span>);  <span class="code-comment">//optimize IO speed</span>
+    std::cin.tie(<span class="code-keyword">nullptr</span>);
+
+    <span class="code-type">int</span> s;
+    std::string n_str;
+    <span class="code-keyword">while</span> (std::cin &gt;&gt; s &gt;&gt; n_str && !(s == <span class="code-number">0</span> && n_str == <span class="code-string">"0"</span>))
+    {
+        <span class="code-comment">//generate each digit's LCD representation</span>
+        std::vector&lt;std::vector&lt;std::string&gt;&gt; digit_lines;
+        <span class="code-keyword">for</span> (<span class="code-type">char</span> c : n_str)
+        {
+            <span class="code-type">int</span> digit = c - <span class="code-string">'0'</span>;
+            digit_lines.push_back(generateDigit(s, digit));
+        }
+
+        <span class="code-comment">//combine digits and output the LCD result</span>
+        std::vector&lt;std::string&gt; display = combineDigits(s, digit_lines);
+        <span class="code-keyword">for</span> (<span class="code-keyword">const</span> auto& line : display)
+        {
+            std::cout &lt;&lt; line &lt;&lt; std::endl;
+        }
+        std::cout &lt;&lt; std::endl;  <span class="code-comment">//empty line after each number</span>
+    }
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}
+</pre>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">代码说明</h3>
+            <div class="bg-gray-50 p-4 rounded-md">
+                <p class="mb-2 text-sm">1. <strong>7段码定义</strong>：<code class="bg-gray-100 px-1 rounded">DIGIT_SEGMENTS</code> 二维数组定义0-9每个数字的7段点亮规则，布尔值<code>1</code>表示对应线段点亮，<code>0</code>表示熄灭，精准匹配计算器液晶屏的数字显示逻辑；</p>
+                <p class="mb-2 text-sm">2. <strong>单数字生成</strong>：<code class="bg-gray-100 px-1 rounded">generateDigit</code> 函数根据尺寸<code>s</code>和目标数字，生成该数字的LCD样式字符串数组，共<code>2s+3</code>行（符合题目行要求），每行按7段码规则拼接空格/|-/-；</p>
+                <p class="mb-2 text-sm">3. <strong>多数字拼接</strong>：<code class="bg-gray-100 px-1 rounded">combineDigits</code> 函数将多个数字的LCD样式按行拼接，数字间添加<strong>一个空列</strong>，严格遵循题目格式要求，避免拼接错误；</p>
+                <p class="mb-2 text-sm">4. <strong>IO优化</strong>：<code class="bg-gray-100 px-1 rounded">std::ios::sync_with_stdio(false)</code> + <code class="bg-gray-100 px-1 rounded">std::cin.tie(nullptr)</code> 关闭C/C++流同步，提升大输入场景下的IO速度；</p>
+                <p class="mb-2 text-sm">5. <strong>边界与格式</strong>：输入终止条件严格匹配<code>s=0且n="0"</code>，每个数字输出后额外打印空行，完全符合题目输出规范；</p>
+                <p class="mb-2 text-sm">6. <strong>现代C++特性</strong>：使用<code class="bg-gray-100 px-1 rounded">std::span</code>传递数字样式数组，减少容器拷贝，提升代码执行效率。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- 旅行问题内容区（粘贴到主内容区 main 标签内，扫雷内容区下方） -->
+<section id="trip-content" class="content-section max-w-4xl mx-auto hidden">
+    <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <h2 class="text-2xl font-bold text-primary mb-4">PC/UVa 110103/10137 - 旅行 (The Trip)</h2>
+        
+        <div class="prose prose-sm max-w-none">
+            <h3 class="text-lg font-semibold text-secondary mb-3">题目描述</h3>
+            <div class="bg-gray-50 p-4 rounded-md mb-6">
+                <p class="mb-2 text-sm">有一个旅行俱乐部每年组织学生到不同的地方旅行。俱乐部成员所去过的地方包括印地安那波利斯、菲尼克斯、纳什维尔、费城、圣何塞和亚特兰大。今年春天他们还准备到爱因霍芬旅行。</p>
+                <p class="mb-2 text-sm">他们一开始就说好要平摊所有费用，但是每次花费都平摊是不现实的。因此，每个学生先为某些特定的项目（例如吃饭、住酒店、打车和购买机票）垫付一些钱，当旅行结束后根据每个学生垫付的金额多退少补，使得每个人的支出差距在 1 分钱以内。在过去，重新分配钱币是一件乏味并且耗时的工作。你的任务是根据一份清单计算出为了平摊费用（差距在 1 分钱以内）所必须的最小总“交易”金额。</p>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">输入</h4>
+                <p class="mb-2 text-sm">输入将包括若干组旅行的数据。每一组数据的第一行为一个正整数 n，代表这次旅行中的学生人数。接下来的 n 行每一行包含了一个学生的支出，精确到分。学生人数不超过1000，并且每个学生的支出不超过 $1 000 00。在最后一组数据结尾后还有单独的一行，包含一个 0。</p>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">输出</h4>
+                <p class="mb-2 text-sm">对于每一组数据，只输出一行，即让每个学生平摊支出所需的最小总“交易”金额，以美元计，精确到分。</p>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">样例输入</h4>
+                <div class="bg-gray-100 p-2 rounded-md mb-2 font-mono text-xs">
+                    3<br>
+                    10.00<br>
+                    20.00<br>
+                    30.00<br>
+                    4<br>
+                    15.00<br>
+                    15.01<br>
+                    3.00<br>
+                    3.01<br>
+                    0
+                </div>
+                
+                <h4 class="font-semibold mt-4 mb-2 text-sm">样例输出</h4>
+                <div class="bg-gray-100 p-2 rounded-md font-mono text-xs">
+                    $10.00<br>
+                    $11.99
+                </div>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">解题代码</h3>
+            <div class="code-container p-4 rounded-md mb-6 font-mono text-sm">
+                <!-- 复制按钮 -->
+                <button class="copy-btn" onclick="copyCode(this)">
+                    <i class="fa fa-copy mr-1"></i>复制代码
+                </button>
+<pre class="code-pre whitespace-pre-wrap">
+<span class="code-comment">// PC/UVa 110103/10137 - The Trip (旅行费用平摊问题)</span>
+<span class="code-include">#include &lt;iostream&gt;</span>
+<span class="code-include">#include &lt;vector&gt;</span>
+<span class="code-include">#include &lt;iomanip&gt;</span>
+<span class="code-include">#include &lt;cmath&gt;</span>
+<span class="code-include">#include &lt;span&gt;</span>
+
+<span class="code-comment">/**
+ * @brief 计算平摊费用所需的最小总交易金额（以分为单位）
+ * 
+ * 核心逻辑：将所有支出转换为分避免浮点精度问题，计算平均支出后，
+ * 统计所有支出低于平均值的学生需要补的总金额（即为最小交易总额）
+ * 
+ * @param n 学生人数
+ * @param cents 每个学生的支出（以分为单位的数组）
+ * @return long long 最小总交易金额（分）
+ */</span>
+<span class="code-type">long long</span> <span class="code-function">calculateMinTranscaction</span>(<span class="code-type">int</span> n, std::span&lt;<span class="code-keyword">const</span> <span class="code-type">int</span>&gt; cents)
+{
+    <span class="code-type">long long</span> total = <span class="code-number">0</span>;
+    <span class="code-keyword">for</span> (<span class="code-type">int</span> c : cents)
+    {
+        total += c;
+    }
+
+    <span class="code-keyword">const</span> <span class="code-type">int</span> avg = total / n;
+    <span class="code-type">long long</span> transfer = <span class="code-number">0</span>;
+
+    <span class="code-keyword">for</span> (<span class="code-type">int</span> c : cents)
+    {
+        <span class="code-keyword">if</span> (c &lt; avg)
+        {
+            transfer += avg - c;
+        }
+    }
+
+    <span class="code-keyword">return</span> transfer;
+}
+
+<span class="code-comment">/**
+ * @brief 主函数：处理输入输出，调用核心计算函数
+ * 
+ * 优化点：
+ * 1. 关闭同步流加速IO
+ * 2. 将美元转换为分避免浮点精度错误
+ * 3. 用std::span减少容器拷贝
+ */</span>
+<span class="code-type">int</span> <span class="code-function">main</span>()
+{
+    std::ios::sync_with_stdio(<span class="code-keyword">false</span>);  <span class="code-comment">// 优化IO速度</span>
+    std::cin.tie(<span class="code-keyword">nullptr</span>);
+
+    <span class="code-type">int</span> n;
+    <span class="code-keyword">while</span> (std::cin &gt;&gt; n && n != <span class="code-number">0</span>)
+    {
+        std::vector&lt;<span class="code-type">int</span>&gt; cents(n);
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; n; ++i)
+        {
+            <span class="code-type">double</span> dollar;
+            std::cin &gt;&gt; dollar;
+            <span class="code-comment">// 转换美元为分（四舍五入避免浮点精度误差）</span>
+            cents[i] = <span class="code-keyword">static_cast</span>&lt;<span class="code-type">int</span>&gt;(std::round(dollar * <span class="code-number">100</span>));
+        }
+
+        <span class="code-type">long long</span> total_cents = calculateMinTranscaction(n, cents);
+        std::cout &lt;&lt; std::fixed &lt;&lt; std::setprecision(<span class="code-number">2</span>)
+            &lt;&lt; "$" &lt;&lt; total_cents / <span class="code-number">100.0</span> &lt;&lt; std::endl;
+    }
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}
+</pre>
+            </div>
+
+            <h3 class="text-lg font-semibold text-secondary mb-3">代码说明</h3>
+            <div class="bg-gray-50 p-4 rounded-md">
+                <p class="mb-2 text-sm">1. <strong>核心思路</strong>：将美元转换为分（整数）避免浮点精度问题，计算平均支出后，统计所有低于平均值的金额总和即为最小交易总额（高于平均值的金额总和与低于的相等，只需统计一侧）；</p>
+                <p class="mb-2 text-sm">2. <strong>精度处理</strong>：使用 <code class="bg-gray-100 px-1 rounded">std::round</code> 四舍五入转换美元到分，避免0.1+0.2=0.30000000000000004这类浮点误差；</p>
+                <p class="mb-2 text-sm">3. <strong>IO优化</strong>：<code class="bg-gray-100 px-1 rounded">std::ios::sync_with_stdio(false)</code> + <code class="bg-gray-100 px-1 rounded">std::cin.tie(nullptr)</code> 关闭C/C++流同步，提升输入输出速度；</p>
+                <p class="mb-2 text-sm">4. <strong>现代C++特性</strong>：使用 <code class="bg-gray-100 px-1 rounded">std::span</code> 传递数组，减少vector拷贝，提升性能；</p>
+                <p class="mb-2 text-sm">5. <strong>输出格式</strong>：<code class="bg-gray-100 px-1 rounded">std::fixed + std::setprecision(2)</code> 保证输出精确到分，符合题目要求。</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 
